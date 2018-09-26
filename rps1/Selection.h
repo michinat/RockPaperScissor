@@ -14,8 +14,13 @@ private:
 protected:
 
 public:
-    virtual selection_t makeSelection() = 0;
+    Selection() = default;
 
+    virtual ~Selection() {
+        delete this;
+    }
+
+    virtual selection_t makeSelection() = 0;
 };
 
 #endif //RPS1_SELECTION_H

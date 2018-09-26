@@ -31,7 +31,7 @@ void Referee::compareRPS(selection_t player1, selection_t player2){
 	          << "player2: " << (int)player2 << std::endl;
 
 
-	
+
     // TODO make case for invalid choices
     if (player1Selection == selection_t::INVALID ||
         player2Selection == selection_t::INVALID) {
