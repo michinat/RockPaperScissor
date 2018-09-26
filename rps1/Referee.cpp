@@ -7,87 +7,92 @@
 
 #include "Referee.h"
 
-
 Referee::Referee() {
-	// TODO Auto-generated constructor stub
-	CPUScore = 0;
-	HumanScore = 0;
-
+    player1Score = 0;
+	player2Score = 0;
+	currentRound = 0;
+	MAX_GAME = 20;
+	player1Selection = selection_t::INVALID;
+    player2Selection = selection_t::INVALID;
 }
 
 Referee::~Referee() {
-	// TODO Auto-generated destructor stub
+    delete this;
 }
 
-void Referee::compareRPS(selection_t human, selection_t cpu){
-	Human = human;
-	CPU = cpu;
+void Referee::compareRPS(selection_t player1, selection_t player2){
+	player1Selection = player1;
+	player2Selection = player2;
 
-	if (Human == selection_t::ROCK) {
-		// if draw, add 1 to cpuScore and humanScore
-		if (CPU == selection_t::ROCK){
-			CPUScore++;
-			HumanScore++;
-		}
-		else if (CPU == selection_t::PAPER){
-			CPUScore++;
-		}
-		else
-		{
-			HumanScore++;
+	/** print debug choices; 0 = rock, 1 = paper, scissor = 2
+	 *  IMPORTANT: COMMENT OUT WHEN DONE DEBUGGING
+	 */
+	std::cout << "player1: " << (int)player1 << std::endl
+	          << "player2: " << (int)player2 << std::endl;
+
+
+	
+    // TODO make case for invalid choices
+    if (player1Selection == selection_t::INVALID ||
+        player2Selection == selection_t::INVALID) {
+    }
+    // if draw, add 1 to both scores - subject to change
+    else if (player1Selection == player2Selection){
+        player2Score++;
+        player1Score++;
+    }
+    // player 1 selects rock
+    else if (player1Selection == selection_t::ROCK) {
+        if (player2Selection == selection_t::SCISSOR) {
+			player1Score++;
+		} else if (player2Selection == selection_t::PAPER) {
+			player2Score++;
 		}
 	}
-	else if (Human == selection_t::PAPER){
-		if (CPU == selection_t::ROCK){
-			HumanScore++;
+	// player 1 selects paper
+	else if (player1Selection == selection_t::PAPER) {
+		if (player2Selection == selection_t::ROCK){
+			player1Score++;
 		}
-		else if (CPU == selection_t::PAPER){
-			CPUScore++;
-			HumanScore++;
-		}
-		else{
-			CPUScore++;
+		else if (player2Selection == selection_t::SCISSOR) {
+			player2Score++;
 		}
 	}
-	else{
-		if(CPUScore == selection_t::PAPER){
-			HumanScore++;
-		}
-		else if (CPUScore == selection_t::ROCK){
-			CPUScore++;
-		}
-		else
-		{
-			CPUScore++;
-			HumanScore++;
-		}
-	}
-
-}
-
-void Referee::displayRoundWinner(){
-	if(CPUScore > HumanScore)
-		std::cout << "Computer wins\n";
-	else
-		std::cout << "Human wins\n";
-}
-
-void Referee::newRound(Player * human, Player * cpu){
-	std::cout << "Score\n Human: " << HumanScore;
-	std::cout << " CPU: " << CPUScore << std::endl;
-	NotifySelection(human);
-	NotifySelection(cpu);
-
-	compareRPS(human->getRPS(), cpu->getRPS());
-}
-
-void Referee::endRound(){
-	if (currentRound == MAX_GAME)
-	{
-		displayRoundWinner();
+	// player 1 selects scissor
+	else if (player1Selection == selection_t::SCISSOR) {
+        if (player2Selection == selection_t::PAPER){
+            player1Score++;
+        }
+        else if (player2Selection == selection_t::ROCK) {
+            player2Score++;
+        }
 	}
 }
 
-void Referee::NotifySelection(Player * player){
-	player->setRPS()
+void Referee::displayRoundWinner(Player * player1, Player * player2) {
+    std::cout << (player1Score > player2Score ? player1->getName() : player2->getName()) << " wins\n";
+}
+
+void Referee::newRound(Player * player1, Player * player2) {
+    // display scores at beginning of round
+	std::cout << "---- Score ----\n"
+	          << player1->getName() << ": " << player1Score << std::endl
+	          << player2->getName() << ": " << player2Score << std::endl;
+
+	// notify player selections
+    notifySelection(player1);
+    notifySelection(player2);
+
+	compareRPS(player1->getRPS(), player2->getRPS());
+
+	// increment round
+	currentRound++;
+}
+
+bool Referee::endGame(){
+    return currentRound == MAX_GAME;
+}
+
+void Referee::notifySelection(Player * player){
+	player->makeRPSChoice();
 }

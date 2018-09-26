@@ -8,16 +8,17 @@
 #include "Human.h"
 
 Human::Human() {
-	// TODO Auto-generated constructor stub
-
+    setName("Human");
 }
 
 Human::~Human() {
-	// TODO Auto-generated destructor stub
+	delete this;
 }
 
-void makeRPSChoice() {
-	std::cout << "Enter your selection: ";
-	std::cin >> RPS;
-}
+void Human::makeRPSChoice() {
+    selection_t hold;
+	std::cout << "Enter your selection: Rock, Paper, or Scissor\n";
+	std::cin >> hold;
 
+	setRPS(hold);
+}

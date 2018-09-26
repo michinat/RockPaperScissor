@@ -1,5 +1,5 @@
 /*
- * CPU.cpp
+ * player2Selection.cpp
  *
  *  Created on: Sep 25, 2018
  *      Author: michellenatasha
@@ -8,15 +8,14 @@
 #include "CPU.h"
 
 CPU::CPU() {
-	// TODO Auto-generated constructor stub
-
+    setName("CPU");
+    selection = new RandomSelection();
 }
 
 CPU::~CPU() {
-	// TODO Auto-generated destructor stub
+    delete this;
 }
 
-void CPU::makeRPSChoice(){
-	// Chooser * c = new RandomSelection();
-	// setRPS(c->getChoice());
+void CPU::makeRPSChoice() {
+    setRPS(selection->makeSelection());
 }

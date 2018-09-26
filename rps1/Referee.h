@@ -7,21 +7,25 @@
 
 #ifndef REFEREE_H_
 #define REFEREE_H_
+
 #include "Player.h"
-#include <iostream>
 
 class Referee {
 private:
-	selection_t CPU, Human;
-	int currentRound, MAX_GAME, CPUScore, HumanScore;
+	selection_t player1Selection, player2Selection;
+	int currentRound, MAX_GAME, player1Score, player2Score;
+
 public:
 	Referee();
 	virtual ~Referee();
-	void compareRPS(selection_t human, selection_t cpu);
-	void displayRoundWinner();
-	void newRound(Player *human, Player *cpu);
-	void endRound();
-	void NotifySelection(Player * player);
+
+	void compareRPS(selection_t player1, selection_t player2);
+
+	void displayRoundWinner(Player * player1, Player * player2);
+	void newRound(Player * player1, Player * player2);
+	bool endGame();
+
+	void notifySelection(Player * player);
 };
 
 #endif /* REFEREE_H_ */

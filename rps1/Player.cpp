@@ -1,3 +1,5 @@
+#include <utility>
+
 /*
  * Player.cpp
  *
@@ -8,12 +10,10 @@
 #include "Player.h"
 
 Player::Player() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Player::~Player() {
-	// TODO Auto-generated destructor stub
+    delete this;
 }
 
 selection_t Player::getRPS(){
@@ -22,4 +22,12 @@ selection_t Player::getRPS(){
 
 void Player::setRPS(selection_t type){
 	RPS = type;
+}
+
+std::string Player::getName() {
+    return name;
+}
+
+void Player::setName(std::string in) {
+    name = std::move(in);
 }

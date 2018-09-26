@@ -7,16 +7,15 @@
 
 #ifndef HUMAN_H_
 #define HUMAN_H_
+
 #include "Player.h"
-#include <iostream>
 
-
-class Human : public Player{
+class Human : public Player {
 public:
-	Human();
-	virtual ~Human();
+    Human();
+    virtual ~Human();
 
-	void makeRPSChoice();
+    void makeRPSChoice() override;
 };
 
 #endif /* HUMAN_H_ */

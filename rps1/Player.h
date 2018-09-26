@@ -1,29 +1,31 @@
-/*
+/**
  * Player.h
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
+ * Interface file for RPS players
  */
 
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
-typedef enum {
-	ROCK = 0,
-	PAPER,
-	SCISSOR
-} selection_t;
+#include "RPS_type.h"
 
 class Player {
+private:
+    selection_t RPS;
+    std::string name;
+
 protected:
-	selection_t RPS;
+    void setRPS(selection_t type);
+    void setName(std::string in);
+
 public:
 	Player();
 	virtual ~Player();
 
 	selection_t getRPS();
-	void setRPS(selection_t type);
+    std::string getName();
 	virtual void makeRPSChoice() = 0;
+
 };
 
 #endif /* PLAYER_H_ */
