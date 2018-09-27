@@ -1,8 +1,6 @@
-/*
- * player2Selection.cpp
+/**
+ * CPU subclass implementation
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #include "CPU.h"

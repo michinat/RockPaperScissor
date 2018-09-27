@@ -1,5 +1,5 @@
 /**
- * Player.cpp
+ * Player base class implementation
  *
  */
 

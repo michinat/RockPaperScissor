@@ -1,8 +1,6 @@
-/*
- * Human.cpp
+/**
+ * Human subclass implementation
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #include "Human.h"

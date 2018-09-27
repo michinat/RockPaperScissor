@@ -1,5 +1,5 @@
 /**
- * Human subclass
+ * Human subclass header
  *
  */
 
@@ -14,6 +14,7 @@ public:
     ~Human() override;
 
     void makeRPSChoice() override;
+
 };
 
 #endif /* HUMAN_H_ */

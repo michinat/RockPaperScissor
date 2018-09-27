@@ -1,8 +1,6 @@
-/*
- * player2Selection.h
+/**
+ * CPU subclass header
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #ifndef CPU_H_
@@ -18,7 +16,8 @@ public:
     CPU();
     ~CPU() override;
 
-	void makeRPSChoice() override;
+
+    void makeRPSChoice() override;
 
 };
 
