@@ -1,6 +1,7 @@
-//
-// Created by drnuc on 9/26/2018.
-//
+/**
+ * RPS main driver
+ */
+
 #include "Referee.h"
 #include "Human.h"
 #include "CPU.h"

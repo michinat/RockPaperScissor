@@ -19,12 +19,12 @@ protected:
     void setName(std::string in);
 
 public:
-	Player();
-	virtual ~Player();
+    Player();
+    virtual ~Player();
 
-	selection_t getRPS();
+    selection_t getRPS();
     std::string getName();
-	virtual void makeRPSChoice() = 0;
+    virtual void makeRPSChoice() = 0;
 
 };
 

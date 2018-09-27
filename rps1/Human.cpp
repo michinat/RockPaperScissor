@@ -12,13 +12,13 @@ Human::Human() {
 }
 
 Human::~Human() {
-	delete this;
+    delete this;
 }
 
 void Human::makeRPSChoice() {
     selection_t hold;
-	std::cout << "Enter your selection: Rock, Paper, or Scissor\n";
-	std::cin >> hold;
+    std::cout << "Enter your selection: Rock, Paper, or Scissor\n";
+    std::cin >> hold;
 
-	setRPS(hold);
+    setRPS(hold);
 }

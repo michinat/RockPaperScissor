@@ -15,8 +15,8 @@ class CPU : public Player {
 private:
     Selection * selection;
 public:
-	CPU();
-	virtual ~CPU();
+    CPU();
+    ~CPU() override;
 
 	void makeRPSChoice() override;
 

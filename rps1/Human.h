@@ -1,8 +1,6 @@
-/*
- * Human.h
+/**
+ * Human subclass
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #ifndef HUMAN_H_
@@ -13,7 +11,7 @@
 class Human : public Player {
 public:
     Human();
-    virtual ~Human();
+    ~Human() override;
 
     void makeRPSChoice() override;
 };

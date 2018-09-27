@@ -1,10 +1,6 @@
-#include <utility>
-
-/*
+/**
  * Player.cpp
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #include "Player.h"
@@ -16,12 +12,12 @@ Player::~Player() {
     delete this;
 }
 
-selection_t Player::getRPS(){
-	return RPS;
+selection_t Player::getRPS() {
+    return RPS;
 }
 
-void Player::setRPS(selection_t type){
-	RPS = type;
+void Player::setRPS(selection_t type) {
+    RPS = type;
 }
 
 std::string Player::getName() {

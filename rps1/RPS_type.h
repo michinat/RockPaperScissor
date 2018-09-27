@@ -10,18 +10,18 @@
 
 typedef enum {
     INVALID = -1,
-	ROCK = 0,
-	PAPER,
-	SCISSOR
+    ROCK = 0,
+    PAPER,
+    SCISSOR
 } selection_t;
 
-// istream helper function
+/// istream helper function for selection_t
 static std::istream &operator>>(std::istream & in, selection_t & type) {
     std::string hold;
     in >> hold;
 
-    for (char &i : hold)
-        i = (char)std::tolower(i);
+    // lowercase input string
+    for (char &i : hold) i = (char)std::tolower(i);
 
     if (hold == "rock") {
         type = selection_t::ROCK;

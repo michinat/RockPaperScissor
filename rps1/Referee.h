@@ -1,8 +1,6 @@
-/*
+/**
  * Referee.h
  *
- *  Created on: Sep 25, 2018
- *      Author: michellenatasha
  */
 
 #ifndef REFEREE_H_
@@ -12,20 +10,20 @@
 
 class Referee {
 private:
-	selection_t player1Selection, player2Selection;
-	int currentRound, MAX_GAME, player1Score, player2Score;
+    selection_t player1Selection, player2Selection;
+    int currentRound, MAX_GAME, player1Score, player2Score;
 
 public:
-	Referee();
-	virtual ~Referee();
+    Referee();
+    ~Referee();
 
-	void compareRPS(selection_t player1, selection_t player2);
+    void compareRPS(selection_t player1, selection_t player2);
 
-	void displayRoundWinner(Player * player1, Player * player2);
-	void newRound(Player * player1, Player * player2);
-	bool endGame();
+    void displayRoundWinner(Player * player1, Player * player2);
+    void newRound(Player * player1, Player * player2);
+    bool endGame();
 
-	void notifySelection(Player * player);
+    void notifySelection(Player * player);
 };
 
 #endif /* REFEREE_H_ */
