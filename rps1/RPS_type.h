@@ -15,25 +15,20 @@ typedef enum {
     SCISSOR
 } selection_t;
 
-/// istream helper function for selection_t
-static std::istream &operator>>(std::istream & in, selection_t & type) {
-    std::string hold;
-    in >> hold;
+// helper selection_t overloaded operator<<
+static std::ostream & operator<<(std::ostream & out, selection_t rps) {
 
-    // lowercase input string
-    for (char &i : hold) i = (char)std::tolower(i);
-
-    if (hold == "rock") {
-        type = selection_t::ROCK;
-    } else if (hold == "paper") {
-        type = selection_t::PAPER;
-    } else if (hold == "scissor") {
-        type = selection_t::SCISSOR;
-    } else {
-        type = selection_t::INVALID;
+    if (rps == selection_t::ROCK) {
+        out << "Rock";
+    } else if (rps == selection_t::PAPER) {
+        out << "Paper";
+    } else if (rps == selection_t::SCISSOR) {
+        out << "Scissor";
+    } else if (rps == selection_t::INVALID) {
+        out << "INVALID_INPUT";
     }
 
-    return in;
+    return out;
 }
 
 #endif //RPS1_RPS_TYPE_H

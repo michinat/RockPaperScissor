@@ -8,7 +8,7 @@
 Referee::Referee() {
     player1Score = 0;
     player2Score = 0;
-    currentRound = 0;
+    currentRound = 1;
     MAX_GAME = 20;
     player1Selection = selection_t::INVALID;
     player2Selection = selection_t::INVALID;
@@ -22,12 +22,12 @@ void Referee::compareRPS(selection_t player1, selection_t player2){
     player1Selection = player1;
     player2Selection = player2;
 
-    /** print debug choices; 0 = rock, 1 = paper, scissor = 2
+    /** print debug choices by overloading operator<<
      *  IMPORTANT: COMMENT OUT WHEN DONE DEBUGGING
      *
      */
-    std::cout << "player1: " << (int)player1 << std::endl
-              << "player2: " << (int)player2 << std::endl;
+    std::cout << "player1: " << player1 << std::endl
+              << "player2: " << player2 << std::endl;
 
     // TODO make case for invalid choices
     if (player1Selection == selection_t::INVALID ||
@@ -41,9 +41,10 @@ void Referee::compareRPS(selection_t player1, selection_t player2){
     // player 1 selects rock
     else if (player1Selection == selection_t::ROCK) {
         if (player2Selection == selection_t::SCISSOR) {
-    	    player1Score++;
-    	} else if (player2Selection == selection_t::PAPER) {
-    	    player2Score++;
+            player1Score++;
+        }
+        else if (player2Selection == selection_t::PAPER) {
+            player2Score++;
         }
     }
     // player 1 selects paper

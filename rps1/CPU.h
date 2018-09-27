@@ -10,14 +10,15 @@
 #include "RandomSelection.h"
 
 class CPU : public Player {
-private:
-    Selection * selection;
 public:
-    CPU();
+
+    // enum defines modes of selection
+    typedef enum {
+        RANDOM = 0
+    } cpuMode_t;
+
+    CPU(cpuMode_t mode);
     ~CPU() override;
-
-
-    void makeRPSChoice() override;
 
 };
 

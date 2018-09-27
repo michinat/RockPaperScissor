@@ -1,6 +1,6 @@
 /**
  *  RPS selection
- *  interface file
+ *  pure abstract interface file
  */
 
 #ifndef RPS1_SELECTION_H
@@ -16,6 +16,8 @@ public:
         delete this;
     }
 
+    /// abstract virtual function
+    /// to be defined in subclasses
     virtual selection_t makeSelection() = 0;
 
 };

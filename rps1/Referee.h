@@ -1,5 +1,5 @@
 /**
- * Referee.h
+ * Referee base class
  *
  */
 

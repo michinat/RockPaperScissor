@@ -1,5 +1,6 @@
 /**
- * RandomSelection
+ * RandomSelection subclass
+ * Outputs selection_t from range of [0, 2]
  */
 
 #ifndef RPS1_RANDOMSELECTION_H
@@ -23,7 +24,7 @@ public:
 
     /// random selection [0, 2]
     selection_t makeSelection() override {
-        std::uniform_int_distribution<std::mt19937::result_type> dist(0,2);
+        std::uniform_int_distribution<std::mt19937::result_type> dist(0, 2);
         return (selection_t)dist(rng);
     }
 

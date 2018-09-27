@@ -5,15 +5,12 @@
 
 #include "CPU.h"
 
-CPU::CPU() {
+CPU::CPU(CPU::cpuMode_t mode) {
     setName("CPU");
-    selection = new RandomSelection();
+    if (mode == CPU::RANDOM)
+        selection = new RandomSelection();
 }
 
 CPU::~CPU() {
     delete this;
-}
-
-void CPU::makeRPSChoice() {
-    setRPS(selection->makeSelection());
 }

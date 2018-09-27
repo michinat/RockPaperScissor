@@ -1,13 +1,14 @@
 /**
  * Player.h
  *
- * Interface file for RPS players
+ * base class file for RPS players
  */
 
 #ifndef PLAYER_H_
 #define PLAYER_H_
 
 #include "RPS_type.h"
+#include "Selection.h"
 
 class Player {
 private:
@@ -15,16 +16,17 @@ private:
     std::string name;
 
 protected:
+    Selection * selection;
     void setRPS(selection_t type);
     void setName(std::string in);
 
 public:
-    Player();
+    Player() = default;
     virtual ~Player();
 
     selection_t getRPS();
     std::string getName();
-    virtual void makeRPSChoice() = 0;
+    void makeRPSChoice();
 
 };
 

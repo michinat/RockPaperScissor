@@ -5,9 +5,6 @@
 
 #include "Player.h"
 
-Player::Player() {
-}
-
 Player::~Player() {
     delete this;
 }
@@ -26,4 +23,8 @@ std::string Player::getName() {
 
 void Player::setName(std::string in) {
     name = std::move(in);
+}
+
+void Player::makeRPSChoice() {
+    setRPS(selection->makeSelection());
 }

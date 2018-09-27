@@ -5,18 +5,12 @@
 
 #include "Human.h"
 
-Human::Human() {
+Human::Human(humanInput_t mode) {
     setName("Human");
+    if (mode == Human::COMMAND_LINE)
+        selection = new CommandLineSelection();
 }
 
 Human::~Human() {
     delete this;
-}
-
-void Human::makeRPSChoice() {
-    selection_t hold;
-    std::cout << "Enter your selection: Rock, Paper, or Scissor\n";
-    std::cin >> hold;
-
-    setRPS(hold);
 }

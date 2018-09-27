@@ -7,13 +7,18 @@
 #define HUMAN_H_
 
 #include "Player.h"
+#include "CommandLineSelection.h"
 
 class Human : public Player {
 public:
-    Human();
-    ~Human() override;
 
-    void makeRPSChoice() override;
+    // enum defines modes of selection
+    typedef enum {
+        COMMAND_LINE
+    } humanInput_t;
+
+    Human(humanInput_t mode);
+    ~Human() override;
 
 };
 
