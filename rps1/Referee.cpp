@@ -9,7 +9,7 @@ Referee::Referee() {
     player1Score = 0;
     player2Score = 0;
     currentRound = 1;
-    MAX_GAME = 20;
+    MAX_GAME = 21;
     player1Selection = selection_t::INVALID;
     player2Selection = selection_t::INVALID;
 }
@@ -74,12 +74,14 @@ void Referee::displayRoundWinner(Player * player1, Player * player2) {
 void Referee::newRound(Player * player1, Player * player2) {
     // display scores at beginning of round
     std::cout << "---- Score ----\n"
+              << "Round: " << currentRound << "/20\n"
               << player1->getName() << ": " << player1Score << std::endl
               << player2->getName() << ": " << player2Score << std::endl;
 
     // notify player selections
     notifySelection(player1);
     notifySelection(player2);
+    // compare player selections
     compareRPS(player1->getRPS(), player2->getRPS());
 
     // increment round
