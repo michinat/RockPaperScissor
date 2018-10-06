@@ -88,7 +88,7 @@ void Referee::newRound(Player * player1, Player * player2) {
     currentRound++;
 }
 
-bool Referee::endGame(){
+bool Referee::endGame() {
     return currentRound == MAX_GAME;
 }
 

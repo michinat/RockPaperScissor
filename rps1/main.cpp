@@ -9,7 +9,7 @@
 int main() {
     // players RPS methods are subject to change
     Player * player1 = new Human(Human::COMMAND_LINE);
-    Player * player2 = new CPU(CPU::RANDOM);
+    Player * player2 = new CPU(CPU::SMART);
     Referee * referee = new Referee();
 
     while (!referee->endGame()) {

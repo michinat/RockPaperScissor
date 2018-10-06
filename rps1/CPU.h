@@ -8,13 +8,15 @@
 
 #include "Player.h"
 #include "RandomSelection.h"
+#include "SmartSelection.h"
 
 class CPU : public Player {
 public:
 
     // enum defines modes of selection
     typedef enum {
-        RANDOM = 0
+        RANDOM = 0,
+        SMART = 1
     } cpuMode_t;
 
     CPU(cpuMode_t mode);
