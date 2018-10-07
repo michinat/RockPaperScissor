@@ -17,8 +17,8 @@ public:
         COMMAND_LINE
     } humanInput_t;
 
-    Human(humanInput_t mode);
-    ~Human() override;
+    explicit Human(humanInput_t mode);
+    ~Human() override = default;
 
 };
 

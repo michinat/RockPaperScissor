@@ -84,11 +84,20 @@ void Referee::newRound(Player * player1, Player * player2) {
     // compare player selections
     compareRPS(player1->getRPS(), player2->getRPS());
 
+    // store entries in vector
+    rps.push_back(convertRPStoChar(player1->getRPS()));
+
+    // keep storing last 5 entries to rps frequency log
+    if (rps.size() >= 5) {
+        pushRPSLog();
+    }
+    rps.push_back(convertRPStoChar(player2->getRPS()));
+
     // increment round
     currentRound++;
 }
 
-bool Referee::endGame(){
+bool Referee::endGame() {
     return currentRound == MAX_GAME;
 }
 

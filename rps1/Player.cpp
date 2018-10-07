@@ -5,10 +5,6 @@
 
 #include "Player.h"
 
-Player::~Player() {
-    delete this;
-}
-
 selection_t Player::getRPS() {
     return RPS;
 }

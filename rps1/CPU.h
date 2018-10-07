@@ -8,17 +8,19 @@
 
 #include "Player.h"
 #include "RandomSelection.h"
+#include "SimpleMLSelection.h"
 
 class CPU : public Player {
 public:
 
     // enum defines modes of selection
     typedef enum {
-        RANDOM = 0
+        RANDOM = 0,
+        SIMPLEML = 1
     } cpuMode_t;
 
-    CPU(cpuMode_t mode);
-    ~CPU() override;
+    explicit CPU(cpuMode_t mode);
+    ~CPU() override = default;
 
 };
 

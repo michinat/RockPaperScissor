@@ -10,7 +10,3 @@ Human::Human(humanInput_t mode) {
     if (mode == Human::COMMAND_LINE)
         selection = new CommandLineSelection();
 }
-
-Human::~Human() {
-    delete this;
-}

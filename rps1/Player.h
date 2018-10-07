@@ -22,12 +22,11 @@ protected:
 
 public:
     Player() = default;
-    virtual ~Player();
+    virtual ~Player() = default;
 
     selection_t getRPS();
     std::string getName();
     void makeRPSChoice();
-
 };
 
 #endif /* PLAYER_H_ */
