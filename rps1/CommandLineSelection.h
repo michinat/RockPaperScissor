@@ -33,9 +33,7 @@ static std::istream & operator>>(std::istream & in, selection_t & type) {
 class CommandLineSelection : public Selection {
 public:
     CommandLineSelection() = default;
-    ~CommandLineSelection() override {
-        delete this;
-    }
+    ~CommandLineSelection() override = default;
 
     selection_t makeSelection() override {
         selection_t hold;

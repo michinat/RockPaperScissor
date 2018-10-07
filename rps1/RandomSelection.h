@@ -18,9 +18,7 @@ public:
         rng.seed(std::random_device()());
     }
 
-    ~RandomSelection() override {
-        delete this;
-    }
+    ~RandomSelection() override = default;
 
     /// random selection [0, 2]
     selection_t makeSelection() override {
