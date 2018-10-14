@@ -26,8 +26,8 @@ void Referee::compareRPS(selection_t player1, selection_t player2){
      *  IMPORTANT: COMMENT OUT WHEN DONE DEBUGGING
      *
      */
-    std::cout << "player1: " << player1 << std::endl
-              << "player2: " << player2 << std::endl;
+    std::cout << "Your choice: " << player1 << std::endl
+              << "CPU choice: " << player2 << std::endl;
 
     // TODO make case for invalid choices
     if (player1Selection == selection_t::INVALID ||
