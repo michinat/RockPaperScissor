@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <algorithm>
 
 typedef enum {
     INVALID = -1,
@@ -54,34 +55,40 @@ static char convertRPStoChar(selection_t rps) {
 // EX: RPRPS 1       (new entry)
 // EX: RPRPS 4 -> 5  (found entry)
 /// WARNING: rps must be >= 5 in length
-// TODO: remove past entries
 static void pushRPSLog() {
     std::ifstream in("rpsPattern.txt");
-    std::ofstream out("rpsPattern.txt", std::ios_base::app | std::ios_base::out);
-    if (in.fail() || out.fail() || rps.size() < 5) {
+
+    std::vector<std::string> rpsLog;
+
+    if (in.fail() || rps.size() < 5) {
         return;
     }
-    std::string entry;
+
+    bool foundEntry = false;
+	// set entry of last 5 entered
+    std::string entry(rps.end()-5, rps.end());
     std::string temp;
     int frequency;
-
-    // set entry of last 5 entered
-    for (unsigned long long int i = (rps.size()-5); i < rps.size(); i++) {
-        entry += rps.at(i);
-    }
 
     while (in >> temp >> frequency) {
         // found a hit
         if (entry == temp) {
-            out << entry << ' ' << (frequency+1) << std::endl;
-            in.close();
-            out.close();
-            return;
+            foundEntry = true;
+            rpsLog.push_back(temp + ' ' + (char)(frequency+'1'));
+        } else {
+            rpsLog.push_back(temp + ' ' + (char)(frequency+'0'));
         }
     }
 
     // no entry found? insert new entry
-    out << entry << ' ' << 1 << std::endl;
+    if (!foundEntry) rpsLog.push_back(entry + " 1");
+    // sort rps log
+    std::sort(rpsLog.begin(), rpsLog.end());
+
+    std::ofstream out("rpsPattern.txt");
+    if (out.fail()) return;
+    // place sorted rps entry into rps log
+    for (const auto &rpsEntry : rpsLog) out << rpsEntry << "\n";
 
     in.close();
     out.close();
