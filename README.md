@@ -1,3 +1,6 @@
 # RockPaperScissor
-> src : rps functionality
-> gui : wx GUI
+> File Directory
+
+src : rps functionality
+
+gui : wx GUI

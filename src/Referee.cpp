@@ -14,10 +14,6 @@ Referee::Referee() {
     player2Selection = selection_t::INVALID;
 }
 
-Referee::~Referee() {
-    delete this;
-}
-
 void Referee::compareRPS(selection_t player1, selection_t player2){
     player1Selection = player1;
     player2Selection = player2;
