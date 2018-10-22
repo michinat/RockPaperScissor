@@ -15,7 +15,7 @@ private:
 
 public:
     Referee();
-    ~Referee();
+    ~Referee() = default;
 
     void compareRPS(selection_t player1, selection_t player2);
 

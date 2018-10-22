@@ -19,7 +19,7 @@ typedef enum {
 } selection_t;
 
 // helper selection_t overloaded operator<<
-static std::ostream & operator<<(std::ostream & out, selection_t rps) {
+static inline std::ostream & operator<<(std::ostream & out, selection_t rps) {
 
     if (rps == selection_t::ROCK) {
         out << "Rock";
@@ -38,7 +38,7 @@ static std::ostream & operator<<(std::ostream & out, selection_t rps) {
 extern std::vector<char> rps;
 
 // RPS to char helper function
-static char convertRPStoChar(selection_t rps) {
+static inline char convertRPStoChar(selection_t rps) {
 
     if (rps == selection_t::ROCK) {
         return 'R';
@@ -65,7 +65,7 @@ static void pushRPSLog() {
     }
 
     bool foundEntry = false;
-	// set entry of last 5 entered
+    // set entry of last 5 entered
     std::string entry(rps.end()-5, rps.end());
     std::string temp;
     int frequency;

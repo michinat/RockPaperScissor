@@ -1,3 +1,6 @@
-src/cmake-build-debug/
-src/.idea/
-src/CMakeLists.txt
+cmake-build-debug/
+.idea/
+CMakeLists.txt
+gui/rps/Debug/
+gui/Debug/
+gui/.vs/
