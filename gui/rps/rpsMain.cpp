@@ -1,61 +1,59 @@
 /**
-Craz CoderZ RPS 0.1
+	Craz CoderZ RPS 0.1
 */
 
-// For compilers that support precompilation, includes "wx/wx.h".
-#include <wx/wxprec.h>
+#include "rpsMain.h"
 
-#ifdef __BORLANDC__
-	#pragma hdrstop
-#endif
-
-// for all others, include the necessary headers (this file is usually all you
-// need because it includes almost all "standard" wxWidgets headers)
-#ifndef WX_PRECOMP
-	#include "wx/wx.h"
-#endif
+// Create a new application object: this macro will allow wxWidgets to create
+// the application object during program execution (it's better than using a
+// static object for many reasons) and also implements the accessor function
+// wxGetApp() which will return the reference of the right type (i.e. RpsApp and
+// not wxApp)
+IMPLEMENT_APP(RpsApp);
 
 // ----------------------------------------------------------------------------
-// resources
+// the application class
 // ----------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------
-// private classes
-// ----------------------------------------------------------------------------
-
-// Define a new application type, each program should derive a class from wxApp
-class RpsApp : public wxApp
+// 'Main program' equivalent: the program execution "starts" here
+bool RpsApp::OnInit()
 {
-public:
-	// override OnInit() function
-	virtual bool OnInit();
-};
-
-// Define a new frame type: this is going to be our main frame
-class RpsFrame : public wxFrame
-{
-public:
-	RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
-private:
-	// event handlers (these functions should _not_ be virtual)
-	void OnHello(wxCommandEvent& event);
-	void OnExit(wxCommandEvent& event);
-	void OnAbout(wxCommandEvent& event);
-	// any class wishing to process wxWidgets events must use this macro
-	DECLARE_EVENT_TABLE();
-};
+	RpsFrame *frame = new RpsFrame("RPS", wxPoint(500, 200), wxSize(900, 680));
+	frame->Show(true);
+	return true;
+}
 
 // ----------------------------------------------------------------------------
-// constants
+// main frame
 // ----------------------------------------------------------------------------
 
-enum
+RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
+	: wxFrame(NULL, wxID_ANY, title, pos, size)
 {
-	ID_Hello = 1,
-	
-	RPS_About = wxID_ABOUT,
-	RPS_Exit = wxID_EXIT
-};
+	wxMenu * menuFile = new wxMenu;
+	menuFile->Append(ID_Hello, "&Hello...\tCtrl-H", 
+		"Help string shown in status bar for this menu item");
+	menuFile->AppendSeparator();
+	menuFile->Append(RPS_Exit);
+
+	wxMenu * menuHelp = new wxMenu;
+	menuHelp->Append(RPS_About);
+
+	wxMenuBar * menuBar = new wxMenuBar;
+	menuBar->Append(menuFile, "&File");
+	menuBar->Append(menuHelp, "&Help");
+	SetMenuBar(menuBar);
+	CreateStatusBar();
+	SetStatusText("Welcome to wxWidgets!");
+
+	// RPS buttons
+	wxButton * rockButton = new wxButton(this, BUTTON_Rock, "Rock", 
+		wxPoint(160, 450), wxDefaultSize, 0);
+	wxButton * scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor",
+		wxPoint(360, 450), wxDefaultSize, 0);
+	wxButton * paperButton = new wxButton(this, BUTTON_Paper, "Paper",
+		wxPoint(560, 450), wxDefaultSize, 0);
+}
 
 // ----------------------------------------------------------------------------
 // event tables and other macros for wxWidgets
@@ -68,54 +66,14 @@ BEGIN_EVENT_TABLE(RpsFrame, wxFrame)
 	EVT_MENU(ID_Hello, RpsFrame::OnHello)
 	EVT_MENU(RPS_Exit, RpsFrame::OnExit)
 	EVT_MENU(RPS_About, RpsFrame::OnAbout)
+	EVT_BUTTON(BUTTON_Rock, RpsFrame::OnRockSelection)
+	EVT_BUTTON(BUTTON_Paper, RpsFrame::OnPaperSelection)
+	EVT_BUTTON(BUTTON_Scissor, RpsFrame::OnScissorSelection)
 END_EVENT_TABLE()
 
-// Create a new application object: this macro will allow wxWidgets to create
-// the application object during program execution (it's better than using a
-// static object for many reasons) and also implements the accessor function
-// wxGetApp() which will return the reference of the right type (i.e. RpsApp and
-// not wxApp)
-IMPLEMENT_APP(RpsApp);
-
-// ============================================================================
-// implementation
-// ============================================================================
-
 // ----------------------------------------------------------------------------
-// the application class
+// main frame implementation
 // ----------------------------------------------------------------------------
-
-// 'Main program' equivalent: the program execution "starts" here
-bool RpsApp::OnInit()
-{
-	RpsFrame *frame = new RpsFrame("RPS", wxPoint(50, 50), wxSize(450, 340));
-	frame->Show(true);
-	return true;
-}
-
-// ----------------------------------------------------------------------------
-// main frame
-// ----------------------------------------------------------------------------
-
-RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size)
-	: wxFrame(NULL, wxID_ANY, title, pos, size)
-{
-	wxMenu *menuFile = new wxMenu;
-	menuFile->Append(ID_Hello, "&Hello...\tCtrl-H", 
-		"Help string shown in status bar for this menu item");
-	menuFile->AppendSeparator();
-	menuFile->Append(RPS_Exit);
-
-	wxMenu *menuHelp = new wxMenu;
-	menuHelp->Append(RPS_About);
-
-	wxMenuBar *menuBar = new wxMenuBar;
-	menuBar->Append(menuFile, "&File");
-	menuBar->Append(menuHelp, "&Help");
-	SetMenuBar(menuBar);
-	CreateStatusBar();
-	SetStatusText("Welcome to wxWidgets!");
-}
 
 void RpsFrame::OnExit(wxCommandEvent& event)
 {
@@ -131,4 +89,19 @@ void RpsFrame::OnAbout(wxCommandEvent& event)
 void RpsFrame::OnHello(wxCommandEvent& event)
 {
 	wxLogMessage("Hello world from wxWidgets!");
+}
+
+void RpsFrame::OnRockSelection(wxCommandEvent& event)
+{
+	wxLogMessage("Rock selected!");
+}
+
+void RpsFrame::OnScissorSelection(wxCommandEvent& event)
+{
+	wxLogMessage("Scissor selected!");
+}
+
+void RpsFrame::OnPaperSelection(wxCommandEvent& event)
+{
+	wxLogMessage("Paper selected!");
 }
