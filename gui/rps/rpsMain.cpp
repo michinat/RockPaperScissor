@@ -67,6 +67,10 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     // ROUNDS 
     wxStaticText * str9 = new wxStaticText(panel, wxID_ANY, "Round Number:", 
     wxPoint(130, 20), wxDefaultSize, wxALIGN_CENTER);
+    wxFont font = str9->GetFont();
+    font.SetPointSize(16);
+    font.SetWeight(wxFONTWEIGHT_BOLD);
+    str9->SetFont(font);
 
     // BACKGROUND 
     wxColour col1;
@@ -77,6 +81,11 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 	// RPS buttons
     wxStaticText * str1 = new wxStaticText(panel, wxID_ANY, "Player Selects:", 
         wxPoint(60, 80), wxDefaultSize, wxALIGN_LEFT); 
+    wxFont font1 = str1->GetFont();
+    font1.SetPointSize(14);
+    font1.SetWeight(wxFONTWEIGHT_BOLD);
+    str1->SetFont(font1); 
+
     wxButton * rockButton = new wxButton(this, BUTTON_Rock, "Rock", 
         wxPoint(60, 110), wxDefaultSize, 0); // Default Size = (-1, -1)
     wxButton * scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor",
@@ -95,6 +104,10 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     // MAEVE'S SELECTION
     wxStaticText * str2 = new wxStaticText(panel, wxID_ANY, "Maeve Selects:", 
     wxPoint(60, 160), wxDefaultSize, wxALIGN_LEFT);
+    wxFont font2 = str2->GetFont();
+    font2.SetPointSize(14);
+    font2.SetWeight(wxFONTWEIGHT_BOLD);
+    str2->SetFont(font2); 
 
     // LINE 
     // wxStaticLine *sl1 = new wxStaticLine(this, wxID_ANY, wxPoint(60, 185), 
@@ -103,17 +116,25 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     // ROUND'S WINNER
     wxStaticText * str4 = new wxStaticText(panel, wxID_ANY, "Winner:", 
     wxPoint(60, 240), wxDefaultSize, wxALIGN_LEFT);
+    wxFont font4 = str4->GetFont();
+    font4.SetPointSize(14);
+    font4.SetWeight(wxFONTWEIGHT_BOLD);
+    str4->SetFont(font4);
 
     // SCORE BOARD 
     wxStaticText * str5 = new wxStaticText(panel, wxID_ANY, "Score Board", 
     wxPoint(60, 290), wxDefaultSize, wxALIGN_LEFT);
+    wxFont font5 = str5->GetFont();
+    font5.SetPointSize(14);
+    font5.SetWeight(wxFONTWEIGHT_BOLD);
+    str5->SetFont(font5);
 
     wxStaticText * str6 = new wxStaticText(panel, wxID_ANY, "Player's Score:", 
-    wxPoint(60, 310), wxDefaultSize, wxALIGN_LEFT);
+    wxPoint(60, 315), wxDefaultSize, wxALIGN_LEFT);
     wxStaticText * str7 = new wxStaticText(panel, wxID_ANY, "Maeve's Score:", 
-    wxPoint(60, 330), wxDefaultSize, wxALIGN_LEFT);
+    wxPoint(60, 335), wxDefaultSize, wxALIGN_LEFT);
     wxStaticText * str8 = new wxStaticText(panel, wxID_ANY, "Draws:", 
-    wxPoint(60, 350), wxDefaultSize, wxALIGN_LEFT);
+    wxPoint(60, 355), wxDefaultSize, wxALIGN_LEFT);
 }
 
 // ----------------------------------------------------------------------------
