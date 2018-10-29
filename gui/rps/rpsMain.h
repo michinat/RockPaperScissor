@@ -15,6 +15,9 @@
 // need because it includes almost all "standard" wxWidgets headers)
 #ifndef WX_PRECOMP
 	#include "wx/wx.h"
+	#include <wx/stattext.h>
+	#include <wx/chartype.h>
+	#include <wx/statline.h>
 #endif
 
 // ----------------------------------------------------------------------------

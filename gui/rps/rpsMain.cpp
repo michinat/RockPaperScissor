@@ -18,7 +18,8 @@ IMPLEMENT_APP(RpsApp);
 // 'Main program' equivalent: the program execution "starts" here
 bool RpsApp::OnInit()
 {
-	RpsFrame *frame = new RpsFrame("RPS", wxPoint(500, 200), wxSize(900, 680));
+    RpsFrame *frame = new RpsFrame("RPS", wxPoint(500, 200), wxSize(400, 680));
+    wxPuts(wxT("Initiated wxWidgets console application!"));
 	frame->Show(true);
 	return true;
 }
@@ -39,6 +40,21 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 	wxMenu * menuHelp = new wxMenu;
 	menuHelp->Append(RPS_About);
 
+
+    // INPUT BOX 
+    wxPanel* panel = new wxPanel(this, -1);
+    // wxTextCtrl* text = new wxTextCtrl(panel, 1, "");
+
+    // wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
+    // panelSizer->Add(text, wxSizerFlags().Center());
+    // panel->SetSizer(panelSizer);
+
+    // wxBoxSizer* frameSizer = new wxBoxSizer(wxVERTICAL);
+    // frameSizer->Add(panel, wxSizerFlags().Expand());
+    // SetSizer(frameSizer);  
+
+
+	// MENU BAR 
 	wxMenuBar * menuBar = new wxMenuBar;
 	menuBar->Append(menuFile, "&File");
 	menuBar->Append(menuHelp, "&Help");
@@ -46,13 +62,58 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 	CreateStatusBar();
 	SetStatusText("Welcome to wxWidgets!");
 
+
+    //wxSize title = new wxSize(5, 5); 
+    // ROUNDS 
+    wxStaticText * str9 = new wxStaticText(panel, wxID_ANY, "Round Number:", 
+    wxPoint(130, 20), wxDefaultSize, wxALIGN_CENTER);
+
+    // BACKGROUND 
+    wxColour col1;
+    col1.Set(wxT("#c2d4dd"));
+    panel->SetBackgroundColour(col1);
+
+
 	// RPS buttons
-	wxButton * rockButton = new wxButton(this, BUTTON_Rock, "Rock", 
-		wxPoint(160, 450), wxDefaultSize, 0);
-	wxButton * scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor",
-		wxPoint(360, 450), wxDefaultSize, 0);
-	wxButton * paperButton = new wxButton(this, BUTTON_Paper, "Paper",
-		wxPoint(560, 450), wxDefaultSize, 0);
+    wxStaticText * str1 = new wxStaticText(panel, wxID_ANY, "Player Selects:", 
+        wxPoint(60, 80), wxDefaultSize, wxALIGN_LEFT); 
+    wxButton * rockButton = new wxButton(this, BUTTON_Rock, "Rock", 
+        wxPoint(60, 110), wxDefaultSize, 0); // Default Size = (-1, -1)
+    wxButton * scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor",
+        wxPoint(160, 110), wxDefaultSize, 0);
+    wxButton * paperButton = new wxButton(this, BUTTON_Paper, "Paper",
+        wxPoint(260, 110), wxDefaultSize, 0);
+
+    // ADD IMAGE
+    // wxPNGHandler *handler = new wxPNGHandler;
+    // wxImage::AddHandler(handler);
+    // wxStaticBitmap *image;
+    // image = new wxStaticBitmap(this, wxID_ANY, wxBitmap("Windows_7_logo.png", wxBITMAP_TYPE_PNG), 
+    //     wxPoint(50,100), wxSize(100, 500));
+
+
+    // MAEVE'S SELECTION
+    wxStaticText * str2 = new wxStaticText(panel, wxID_ANY, "Maeve Selects:", 
+    wxPoint(60, 160), wxDefaultSize, wxALIGN_LEFT);
+
+    // LINE 
+    // wxStaticLine *sl1 = new wxStaticLine(this, wxID_ANY, wxPoint(60, 185), 
+    // wxSize(340,1));
+
+    // ROUND'S WINNER
+    wxStaticText * str4 = new wxStaticText(panel, wxID_ANY, "Winner:", 
+    wxPoint(60, 240), wxDefaultSize, wxALIGN_LEFT);
+
+    // SCORE BOARD 
+    wxStaticText * str5 = new wxStaticText(panel, wxID_ANY, "Score Board", 
+    wxPoint(60, 290), wxDefaultSize, wxALIGN_LEFT);
+
+    wxStaticText * str6 = new wxStaticText(panel, wxID_ANY, "Player's Score:", 
+    wxPoint(60, 310), wxDefaultSize, wxALIGN_LEFT);
+    wxStaticText * str7 = new wxStaticText(panel, wxID_ANY, "Maeve's Score:", 
+    wxPoint(60, 330), wxDefaultSize, wxALIGN_LEFT);
+    wxStaticText * str8 = new wxStaticText(panel, wxID_ANY, "Draws:", 
+    wxPoint(60, 350), wxDefaultSize, wxALIGN_LEFT);
 }
 
 // ----------------------------------------------------------------------------
