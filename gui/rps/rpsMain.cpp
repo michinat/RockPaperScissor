@@ -18,7 +18,7 @@ IMPLEMENT_APP(RpsApp);
 // 'Main program' equivalent: the program execution "starts" here
 bool RpsApp::OnInit()
 {
-    RpsFrame *frame = new RpsFrame("RPS", wxPoint(500, 200), wxSize(400, 680));
+    RpsFrame *frame = new RpsFrame("RPS", wxPoint(500, 200), wxSize(900, 680));
     wxPuts(wxT("Initiated wxWidgets console application!"));
 	frame->Show(true);
 	return true;
@@ -40,9 +40,26 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 	wxMenu * menuHelp = new wxMenu;
 	menuHelp->Append(RPS_About);
 
+	// MENU BAR 
+	wxMenuBar * menuBar = new wxMenuBar;
+	menuBar->Append(menuFile, "&File");
+	menuBar->Append(menuHelp, "&Help");
+	SetMenuBar(menuBar);
+	CreateStatusBar();
+	SetStatusText("Welcome to wxWidgets!");
+
+	// MAIN PANEL
+	wxPanel * mainPanel = new wxPanel(this, wxID_ANY);
+	wxBoxSizer * mainSizer = new wxBoxSizer(wxVERTICAL);
+	mainSizer->SetSizeHints(mainPanel);
+	mainPanel->SetSizer(mainSizer);
+	// set main panel color
+	wxColour col1;
+	col1.Set(wxT("#c2d4dd"));
+	mainPanel->SetBackgroundColour(col1);
 
     // INPUT BOX 
-    wxPanel* panel = new wxPanel(this, -1);
+    // wxPanel* panel = new wxPanel(this, -1);
     // wxTextCtrl* text = new wxTextCtrl(panel, 1, "");
 
     // wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
@@ -53,45 +70,49 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     // frameSizer->Add(panel, wxSizerFlags().Expand());
     // SetSizer(frameSizer);  
 
-
-	// MENU BAR 
-	wxMenuBar * menuBar = new wxMenuBar;
-	menuBar->Append(menuFile, "&File");
-	menuBar->Append(menuHelp, "&Help");
-	SetMenuBar(menuBar);
-	CreateStatusBar();
-	SetStatusText("Welcome to wxWidgets!");
-
-
     //wxSize title = new wxSize(5, 5); 
+
     // ROUNDS 
-    wxStaticText * str9 = new wxStaticText(panel, wxID_ANY, "Round Number:", 
-    wxPoint(130, 20), wxDefaultSize, wxALIGN_CENTER);
+	wxPanel * headerPanel = new wxPanel(mainPanel, wxID_ANY);
+	wxBoxSizer * headerSizer = new wxBoxSizer(wxHORIZONTAL);
+
+    wxStaticText * str9 = new wxStaticText(headerPanel, wxID_ANY, "Round Number:");
     wxFont font = str9->GetFont();
     font.SetPointSize(16);
     font.SetWeight(wxFONTWEIGHT_BOLD);
     str9->SetFont(font);
 
-    // BACKGROUND 
-    wxColour col1;
-    col1.Set(wxT("#c2d4dd"));
-    panel->SetBackgroundColour(col1);
-
+	headerSizer->Add(str9, 0, 0, 0);
+	headerSizer->SetSizeHints(mainPanel);
+	headerPanel->SetSizer(headerSizer);
+	mainSizer->Add(headerPanel, 0, wxALIGN_CENTER, 0);
 
 	// RPS buttons
-    wxStaticText * str1 = new wxStaticText(panel, wxID_ANY, "Player Selects:", 
-        wxPoint(60, 80), wxDefaultSize, wxALIGN_LEFT); 
-    wxFont font1 = str1->GetFont();
-    font1.SetPointSize(14);
-    font1.SetWeight(wxFONTWEIGHT_BOLD);
-    str1->SetFont(font1); 
+	wxPanel * rpsPanel = new wxPanel(mainPanel, wxID_ANY);
+	wxBoxSizer * rpsPanelSizer = new wxBoxSizer(wxVERTICAL);
 
-    wxButton * rockButton = new wxButton(this, BUTTON_Rock, "Rock", 
-        wxPoint(60, 110), wxDefaultSize, 0); // Default Size = (-1, -1)
-    wxButton * scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor",
-        wxPoint(160, 110), wxDefaultSize, 0);
-    wxButton * paperButton = new wxButton(this, BUTTON_Paper, "Paper",
-        wxPoint(260, 110), wxDefaultSize, 0);
+	wxStaticText * str1 = new wxStaticText(rpsPanel, wxID_ANY, "Player Selects:");
+	wxFont font1 = str1->GetFont();
+	font1.SetPointSize(14);
+	font1.SetWeight(wxFONTWEIGHT_BOLD);
+	str1->SetFont(font1);
+
+	rpsPanelSizer->Add(str1);
+
+	wxButton * rockButton = new wxButton(rpsPanel, BUTTON_Rock, "Rock");
+	wxButton * scissorButton = new wxButton(rpsPanel, BUTTON_Scissor, "Scissor");
+	wxButton * paperButton = new wxButton(rpsPanel, BUTTON_Paper, "Paper");
+
+	wxBoxSizer * rpsButtonSizer = new wxBoxSizer(wxHORIZONTAL);
+	rpsButtonSizer->Add(rockButton, 0, wxRIGHT, 30);
+	rpsButtonSizer->Add(scissorButton, 0, wxRIGHT, 30);
+	rpsButtonSizer->Add(paperButton, 0, 0, 0);
+
+	rpsPanelSizer->Add(rpsButtonSizer, 0, wxTOP, 30);
+
+	rpsPanelSizer->SetSizeHints(mainPanel);
+	rpsPanel->SetSizer(rpsPanelSizer);
+	mainSizer->Add(rpsPanel, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 30);
 
     // ADD IMAGE
     // wxPNGHandler *handler = new wxPNGHandler;
@@ -100,41 +121,72 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     // image = new wxStaticBitmap(this, wxID_ANY, wxBitmap("Windows_7_logo.png", wxBITMAP_TYPE_PNG), 
     //     wxPoint(50,100), wxSize(100, 500));
 
-
     // MAEVE'S SELECTION
-    wxStaticText * str2 = new wxStaticText(panel, wxID_ANY, "Maeve Selects:", 
-    wxPoint(60, 160), wxDefaultSize, wxALIGN_LEFT);
+	wxPanel * maevePanel = new wxPanel(mainPanel, wxID_ANY);
+	wxBoxSizer * maevePanelSizer = new wxBoxSizer(wxVERTICAL);
+
+	wxBoxSizer * maeveHeaderSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxStaticText * str2 = new wxStaticText(maevePanel, wxID_ANY, "Maeve Selects:");
     wxFont font2 = str2->GetFont();
     font2.SetPointSize(14);
     font2.SetWeight(wxFONTWEIGHT_BOLD);
     str2->SetFont(font2); 
 
+	maeveHeaderSizer->Add(str2, 0, 0, 0);
+	maevePanelSizer->Add(maeveHeaderSizer, 0, 0, 0);
+
+	maevePanelSizer->SetSizeHints(mainPanel);
+	maevePanel->SetSizer(maevePanelSizer);
+	mainSizer->Add(maevePanel, 0, wxALIGN_CENTER | wxRIGHT, 245);
+
     // LINE 
     // wxStaticLine *sl1 = new wxStaticLine(this, wxID_ANY, wxPoint(60, 185), 
     // wxSize(340,1));
-
+	
     // ROUND'S WINNER
-    wxStaticText * str4 = new wxStaticText(panel, wxID_ANY, "Winner:", 
-    wxPoint(60, 240), wxDefaultSize, wxALIGN_LEFT);
+	wxPanel * roundWinnerPanel = new wxPanel(mainPanel, wxID_ANY);
+	wxBoxSizer * roundWinnerPanelSizer = new wxBoxSizer(wxVERTICAL);
+
+	wxBoxSizer * winnerHeaderSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxStaticText * str4 = new wxStaticText(roundWinnerPanel, wxID_ANY, "Winner:");
     wxFont font4 = str4->GetFont();
     font4.SetPointSize(14);
     font4.SetWeight(wxFONTWEIGHT_BOLD);
     str4->SetFont(font4);
 
+	winnerHeaderSizer->Add(str4, 0, wxRIGHT, 330);
+	roundWinnerPanelSizer->Add(winnerHeaderSizer);
+
+	roundWinnerPanelSizer->SetSizeHints(mainPanel);
+	roundWinnerPanel->SetSizer(roundWinnerPanelSizer);
+	mainSizer->Add(roundWinnerPanel, 0, wxALIGN_CENTER | wxTOP, 30);
+
     // SCORE BOARD 
-    wxStaticText * str5 = new wxStaticText(panel, wxID_ANY, "Score Board", 
-    wxPoint(60, 290), wxDefaultSize, wxALIGN_LEFT);
+	wxPanel * scoreBoardPanel = new wxPanel(mainPanel, wxID_ANY);
+	wxBoxSizer * scoreBoardSizer = new wxBoxSizer(wxVERTICAL);
+
+	wxBoxSizer * scoreBoardHeaderSizer = new wxBoxSizer(wxHORIZONTAL);
+    wxStaticText * str5 = new wxStaticText(scoreBoardPanel, wxID_ANY, "Score Board");
     wxFont font5 = str5->GetFont();
     font5.SetPointSize(14);
     font5.SetWeight(wxFONTWEIGHT_BOLD);
     str5->SetFont(font5);
 
-    wxStaticText * str6 = new wxStaticText(panel, wxID_ANY, "Player's Score:", 
-    wxPoint(60, 315), wxDefaultSize, wxALIGN_LEFT);
-    wxStaticText * str7 = new wxStaticText(panel, wxID_ANY, "Maeve's Score:", 
-    wxPoint(60, 335), wxDefaultSize, wxALIGN_LEFT);
-    wxStaticText * str8 = new wxStaticText(panel, wxID_ANY, "Draws:", 
-    wxPoint(60, 355), wxDefaultSize, wxALIGN_LEFT);
+	scoreBoardHeaderSizer->Add(str5, 0, wxRIGHT, 275);
+	scoreBoardSizer->Add(scoreBoardHeaderSizer);
+
+	wxBoxSizer * scoreSizer = new wxBoxSizer(wxVERTICAL);
+    wxStaticText * str6 = new wxStaticText(scoreBoardPanel, wxID_ANY, "Player's Score:");
+	scoreSizer->Add(str6);
+    wxStaticText * str7 = new wxStaticText(scoreBoardPanel, wxID_ANY, "Maeve's Score:");
+	scoreSizer->Add(str7);
+    wxStaticText * str8 = new wxStaticText(scoreBoardPanel, wxID_ANY, "Draws:");
+	scoreSizer->Add(str8);
+	scoreBoardSizer->Add(scoreSizer);
+
+	scoreBoardSizer->SetSizeHints(mainPanel);
+	scoreBoardPanel->SetSizer(scoreBoardSizer);
+	mainSizer->Add(scoreBoardPanel, 0, wxALIGN_CENTER | wxTOP, 30);
 }
 
 // ----------------------------------------------------------------------------
