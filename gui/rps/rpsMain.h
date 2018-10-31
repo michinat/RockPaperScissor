@@ -1,11 +1,20 @@
 /**
-	Craz CoderZ RPS 0.1
+	Craz CoderZ RPS
 */
 
 #pragma once
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
+#include <wx/chartype.h>
+#include <wx/statline.h>
+
+// RpsPanel child classes
+#include "RoundPanel.h"
+#include "RpsButtonPanel.h"
+#include "MaevePanel.h"
+#include "RoundWinnerPanel.h"
+#include "ScoreBoardPanel.h"
 
 #ifdef __BORLANDC__
 	#pragma hdrstop
@@ -15,9 +24,6 @@
 // need because it includes almost all "standard" wxWidgets headers)
 #ifndef WX_PRECOMP
 	#include "wx/wx.h"
-	#include <wx/stattext.h>
-	#include <wx/chartype.h>
-	#include <wx/statline.h>
 #endif
 
 // ----------------------------------------------------------------------------
@@ -46,24 +52,7 @@ private:
 	void OnHello(wxCommandEvent& event);
 	void OnExit(wxCommandEvent& event);
 	void OnAbout(wxCommandEvent& event);
-	void OnRockSelection(wxCommandEvent& event);
-	void OnScissorSelection(wxCommandEvent& event);
-	void OnPaperSelection(wxCommandEvent& event);
+	void OnSettings(wxCommandEvent& event);
 	// any class wishing to process wxWidgets events must use this macro
 	DECLARE_EVENT_TABLE();
-};
-
-// ----------------------------------------------------------------------------
-// constants
-// ----------------------------------------------------------------------------
-
-enum
-{
-	RPS_About = wxID_ABOUT,
-	RPS_Exit = wxID_EXIT,
-
-	ID_Hello = 1,
-	BUTTON_Rock,
-	BUTTON_Paper,
-	BUTTON_Scissor
 };

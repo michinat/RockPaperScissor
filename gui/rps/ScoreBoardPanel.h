@@ -1,0 +1,26 @@
+/**
+	Craz CoderZ RPS
+*/
+
+#pragma once
+
+#include "RpsPanel.h"
+#include <wx/stattext.h>
+
+class ScoreBoardPanel : public RpsPanel {
+public:
+	ScoreBoardPanel(wxPanel * mainPanel);
+
+	void Init(wxPanel * mainPanel) override;
+private:
+	wxSizer * scoreSizer;
+	wxSizer * scoreBoardHeaderSizer;
+
+	wxStaticText * scoreBoardText;
+	wxStaticText * playerText;
+	wxStaticText * playerScoreText;
+	wxStaticText * maeveText;
+	wxStaticText * maeveScoreText;
+	wxStaticText * drawText;
+	wxStaticText * drawScoreText;
+};

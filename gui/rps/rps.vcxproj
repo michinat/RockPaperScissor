@@ -131,12 +131,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="rpsMain.cpp">
+    <ClCompile Include="MaevePanel.cpp" />
+    <ClCompile Include="RoundPanel.cpp" />
+    <ClCompile Include="RoundWinnerPanel.cpp" />
+    <ClCompile Include="RpsButtonPanel.cpp" />
+    <ClCompile Include="RpsMain.cpp">
       <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(WXWIN)\lib\vc_lib\mswud;$(WXWIN)\include\msvc;$(WXWIN)\include;%(AdditionalIncludeDirectories);$(RPS);</AdditionalIncludeDirectories>
     </ClCompile>
+    <ClCompile Include="ScoreBoardPanel.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="rpsMain.h" />
+    <ClInclude Include="RpsPanel.h" />
+    <ClInclude Include="MaevePanel.h" />
+    <ClInclude Include="resource_id.h" />
+    <ClInclude Include="RoundPanel.h" />
+    <ClInclude Include="RoundWinnerPanel.h" />
+    <ClInclude Include="RpsButtonPanel.h" />
+    <ClInclude Include="RpsMain.h" />
+    <ClInclude Include="ScoreBoardPanel.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
