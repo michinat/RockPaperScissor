@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Maeve Panel Defintion
 */
 
 #include "MaevePanel.h"
@@ -22,9 +23,9 @@ void MaevePanel::Init(wxPanel * mainPanel)
 	maeveSelectText->SetFont(font);
 	maeveGridSizer->Add(maeveSelectText, 0, 0, 0);
 
-	maeveScoreText = new wxStaticText(this, wxID_ANY, "Nothing");
-	maeveScoreText->SetFont(font);
-	maeveGridSizer->Add(maeveScoreText, 0, wxLEFT, 42);
+	maeveSelectionText = new wxStaticText(this, wxID_ANY, "Nothing");
+	maeveSelectionText->SetFont(font);
+	maeveGridSizer->Add(maeveSelectionText, 0, wxLEFT, 42);
 
 	panelSizer->Add(maeveGridSizer, 0, 0, 0);
 	panelSizer->SetSizeHints(mainPanel);

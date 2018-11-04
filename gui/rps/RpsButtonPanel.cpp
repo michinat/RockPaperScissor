@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Rps Button Panel Definition
 */
 
 #include "RpsButtonPanel.h"
@@ -36,17 +37,17 @@ void RpsButtonPanel::Init(wxPanel * mainPanel)
 	this->SetSizer(panelSizer);
 }
 
-void RpsButtonPanel::OnRockSelection(wxCommandEvent& event)
+void RpsButtonPanel::onRockSelection()
 {
-	wxLogMessage("Rock selected!");
+	interfaceHandler->humanMadeSelection(selection_t::ROCK);
 }
 
-void RpsButtonPanel::OnScissorSelection(wxCommandEvent& event)
+void RpsButtonPanel::onScissorSelection()
 {
-	wxLogMessage("Scissor selected!");
+	interfaceHandler->humanMadeSelection(selection_t::SCISSOR);
 }
 
-void RpsButtonPanel::OnPaperSelection(wxCommandEvent& event)
+void RpsButtonPanel::onPaperSelection()
 {
-	wxLogMessage("Paper selected!");
+	interfaceHandler->humanMadeSelection(selection_t::PAPER);
 }

@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Round Winnner Panel subclass
 */
 
 #pragma once
@@ -13,6 +14,7 @@ public:
 	RoundWinnerPanel(wxPanel * mainPanel);
 
 	void Init(wxPanel * mainPanel) override;
+	wxStaticText * getWinnerNameText() { return winnerNameText; }
 private:
 	wxSizer * winnerGridSizer;
 

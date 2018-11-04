@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Scoreboard Panel Definition
 */
 
 #include "ScoreBoardPanel.h"

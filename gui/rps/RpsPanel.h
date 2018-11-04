@@ -1,6 +1,6 @@
 /**
-	Craz CoderZ RPS
-	Abstract panel class
+	CraZ CoderZ RPS
+	Abstract Rps panel class
 */
 
 #pragma once

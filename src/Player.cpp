@@ -1,6 +1,6 @@
 /**
+ * CraZ CoderZ RPS
  * Player base class implementation
- *
  */
 
 #include "Player.h"

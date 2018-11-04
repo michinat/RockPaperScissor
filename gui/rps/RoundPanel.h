@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Round Panel subclass
 */
 
 #pragma once
@@ -12,6 +13,8 @@ public:
 	RoundPanel(wxPanel * mainPanel);
 
 	void Init(wxPanel * mainPanel) override;
+
+	wxStaticText * getRoundScoreText() { return roundScoreText; };
 private:
 	wxSizer * headerGridSizer;
 

@@ -1,6 +1,6 @@
 /**
- * Human subclass header
- *
+ * CraZ CoderZ RPS
+ * Human subclass
  */
 
 #ifndef HUMAN_H_

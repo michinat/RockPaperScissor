@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Scoreboard Panel subclass
 */
 
 #pragma once
@@ -12,6 +13,10 @@ public:
 	ScoreBoardPanel(wxPanel * mainPanel);
 
 	void Init(wxPanel * mainPanel) override;
+
+	wxStaticText * getPlayerScoreText() { return playerScoreText; }
+	wxStaticText * getMaeveScoreText() { return maeveScoreText; }
+	wxStaticText * getDrawScoreText() { return drawScoreText; }
 private:
 	wxSizer * scoreSizer;
 	wxSizer * scoreBoardHeaderSizer;

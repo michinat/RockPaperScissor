@@ -1,6 +1,7 @@
-//
-// Created by Linda Nguyen on 10/5/18.
-//
+/**
+    CraZ CoderZ RPS
+	Simple Machine Learning Selection subclass
+*/
 
 #ifndef ROCKPAPERSCISSOR_SMARTSELECTION_H
 #define ROCKPAPERSCISSOR_SMARTSELECTION_H

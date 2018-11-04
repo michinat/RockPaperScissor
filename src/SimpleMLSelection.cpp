@@ -1,6 +1,7 @@
-//
-// Created by drnuc on 10/6/2018.
-//
+/**
+ * CraZ CoderZ RPS
+ * SimpleMLSelection Definition
+*/
 
 #include "SimpleMLSelection.h"
 

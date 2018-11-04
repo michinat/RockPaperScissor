@@ -1,6 +1,5 @@
 /**
- * Player.h
- *
+ * CraZ CoderZ RPS
  * base class file for RPS players
  */
 
@@ -17,13 +16,13 @@ private:
 
 protected:
     Selection * selection;
-    void setRPS(selection_t type);
     void setName(std::string in);
 
 public:
     Player() = default;
     virtual ~Player() = default;
 
+	void setRPS(selection_t type);
     selection_t getRPS();
     std::string getName();
     void makeRPSChoice();

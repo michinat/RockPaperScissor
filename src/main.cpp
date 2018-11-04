@@ -1,7 +1,7 @@
 /**
  * RPS main driver
  */
-
+/*
 #include "Referee.h"
 #include "Human.h"
 #include "CPU.h"
@@ -22,3 +22,4 @@ int main() {
     delete player1;
     delete player2;
 }
+*/

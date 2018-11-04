@@ -1,4 +1,5 @@
 /**
+ * CraZ CoderZ RPS
  * CommandLineSelection subclass
  * Player is asked to input
 */
@@ -15,7 +16,7 @@ static std::istream & operator>>(std::istream & in, selection_t & type) {
     in >> hold;
 
     // lowercase input string
-    for (char &i : hold) i = (char)std::tolower(i);
+    for (char &i : hold) i = (char)::tolower(i);
 
     if (hold == "rock") {
         type = selection_t::ROCK;

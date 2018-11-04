@@ -1,4 +1,5 @@
 /**
+ * CraZ CoderZ RPS
  * RPS selection file
  * Defines RPS types and helper functions
 */
@@ -10,6 +11,7 @@
 #include <vector>
 #include <fstream>
 #include <algorithm>
+#include <string>
 
 typedef enum {
     INVALID = -1,
@@ -17,6 +19,24 @@ typedef enum {
     PAPER,
     SCISSOR
 } selection_t;
+
+// helper selection_t to string
+static inline std::string rpsToString(selection_t rps) {
+	std::string s;
+	if (rps == selection_t::ROCK) {
+		s = "Rock";
+	}
+	else if (rps == selection_t::PAPER) {
+		s = "Paper";
+	}
+	else if (rps == selection_t::SCISSOR) {
+		s = "Scissor";
+	}
+	else if (rps == selection_t::INVALID) {
+		s = "INVALID_INPUT";
+	}
+	return s;
+}
 
 // helper selection_t overloaded operator<<
 static inline std::ostream & operator<<(std::ostream & out, selection_t rps) {
@@ -57,10 +77,10 @@ static inline char convertRPStoChar(selection_t rps) {
 /// WARNING: rps must be >= 5 in length
 static void pushRPSLog() {
     std::ifstream in("rpsPattern.txt");
-
     std::vector<std::string> rpsLog;
 
     if (in.fail() || rps.size() < 5) {
+		std::cout << "File failed to open\n";
         return;
     }
 
@@ -74,9 +94,9 @@ static void pushRPSLog() {
         // found a hit
         if (entry == temp) {
             foundEntry = true;
-            rpsLog.push_back(temp + ' ' + (char)(frequency+'1'));
+            rpsLog.push_back(temp + ' ' + std::to_string(frequency+1));
         } else {
-            rpsLog.push_back(temp + ' ' + (char)(frequency+'0'));
+            rpsLog.push_back(temp + ' ' + std::to_string(frequency));
         }
     }
 

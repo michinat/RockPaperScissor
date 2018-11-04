@@ -1,6 +1,6 @@
 /**
+ * CraZ CoderZ RPS
  * CPU subclass implementation
- *
  */
 
 #include "CPU.h"

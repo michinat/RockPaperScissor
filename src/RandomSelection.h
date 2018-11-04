@@ -1,4 +1,5 @@
 /**
+ * CraZ CoderZ RPS
  * RandomSelection subclass
  * Outputs selection_t from range of [0, 2]
  */

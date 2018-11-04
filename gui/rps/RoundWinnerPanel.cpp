@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Round Winner Panel Definition
 */
 
 #include "RoundWinnerPanel.h"

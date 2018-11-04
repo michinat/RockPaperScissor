@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	Round Panel Definition
 */
 
 #include "RoundPanel.h"

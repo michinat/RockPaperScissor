@@ -1,5 +1,6 @@
 /**
-	Craz CoderZ RPS
+	CraZ CoderZ RPS
+	RPS main driver file which inits wxWidgets
 */
 
 #include "RpsMain.h"
@@ -63,49 +64,29 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 	mainPanel->SetBackgroundColour(col1);
 
     // ROUNDS
-	RpsPanel * roundPanel = new RoundPanel(mainPanel);
+	roundPanel = new RoundPanel(mainPanel);
 	mainSizer->Add(roundPanel, 0, wxALIGN_CENTER | wxTOP, 25);
 
 	// RPS buttons
-	RpsPanel * rpsButtonPanel = new RpsButtonPanel(mainPanel);
+	rpsButtonPanel = new RpsButtonPanel(mainPanel);
 	mainSizer->Add(rpsButtonPanel, 0, wxALIGN_CENTER | wxTOP | wxBOTTOM, 30);
 
     // MAEVE'S SELECTION
-	RpsPanel * maevePanel = new MaevePanel(mainPanel);
+	maevePanel = new MaevePanel(mainPanel);
 	mainSizer->Add(maevePanel, 0, wxALIGN_CENTER, 0);
 	
     // ROUND'S WINNER
-	RpsPanel * roundWinnerPanel = new RoundWinnerPanel(mainPanel);
+	roundWinnerPanel = new RoundWinnerPanel(mainPanel);
 	mainSizer->Add(roundWinnerPanel, 0, wxALIGN_CENTER | wxTOP, 10);
 
     // SCORE BOARD 
-	RpsPanel * scoreBoardPanel = new ScoreBoardPanel(mainPanel);
+	scoreBoardPanel = new ScoreBoardPanel(mainPanel);
 	mainSizer->Add(scoreBoardPanel, 0, wxALIGN_CENTER | wxTOP, 10);
 
-	// INPUT BOX 
-	// wxPanel* panel = new wxPanel(this, -1);
-	// wxTextCtrl* text = new wxTextCtrl(panel, 1, "");
 
-	// wxBoxSizer* panelSizer = new wxBoxSizer(wxVERTICAL);
-	// panelSizer->Add(text, wxSizerFlags().Center());
-	// panel->SetSizer(panelSizer);
-
-	// wxBoxSizer* frameSizer = new wxBoxSizer(wxVERTICAL);
-	// frameSizer->Add(panel, wxSizerFlags().Expand());
-	// SetSizer(frameSizer);  
-
-	// wxSize title = new wxSize(5, 5); 
-
-	// ADD IMAGE
-	// wxPNGHandler *handler = new wxPNGHandler;
-	// wxImage::AddHandler(handler);
-	// wxStaticBitmap *image;
-	// image = new wxStaticBitmap(this, wxID_ANY, wxBitmap("Windows_7_logo.png", wxBITMAP_TYPE_PNG), 
-	//     wxPoint(50,100), wxSize(100, 500));
-
-	// LINE 
-	// wxStaticLine *sl1 = new wxStaticLine(this, wxID_ANY, wxPoint(60, 185), 
-	// wxSize(340,1));
+	rpsButtonPanel->setInterfaceHandler(
+		roundPanel->getRoundScoreText(), maevePanel->getMaeveSelectionText(), roundWinnerPanel->getWinnerNameText(),
+		scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText());
 
 }
 
@@ -121,16 +102,21 @@ BEGIN_EVENT_TABLE(RpsFrame, wxFrame)
 	EVT_MENU(RPS_Exit, RpsFrame::OnExit)
 	EVT_MENU(ID_SETTING, RpsFrame::OnSettings)
 	EVT_MENU(RPS_About, RpsFrame::OnAbout)
-	EVT_BUTTON(BUTTON_Rock, RpsButtonPanel::OnRockSelection)
-	EVT_BUTTON(BUTTON_Paper, RpsButtonPanel::OnPaperSelection)
-	EVT_BUTTON(BUTTON_Scissor, RpsButtonPanel::OnScissorSelection)
+	EVT_BUTTON(BUTTON_Rock, RpsFrame::OnRockPressed)
+	EVT_BUTTON(BUTTON_Paper, RpsFrame::OnPaperPressed)
+	EVT_BUTTON(BUTTON_Scissor, RpsFrame::OnScissorPressed)
 END_EVENT_TABLE()
 
 // ----------------------------------------------------------------------------
 // main frame implementation
 // ----------------------------------------------------------------------------
 
-void RpsFrame::OnExit(wxCommandEvent& event)
+void RpsFrame::OnHello(wxCommandEvent& event)
+{
+	wxLogMessage("Hello world from wxWidgets!");
+}
+
+void RpsFrame::OnExit(wxCommandEvent & event)
 {
 	Close(true);
 }
@@ -141,12 +127,23 @@ void RpsFrame::OnAbout(wxCommandEvent& event)
 		"About Hello World", wxOK | wxICON_INFORMATION);
 }
 
-void RpsFrame::OnHello(wxCommandEvent& event)
-{
-	wxLogMessage("Hello world from wxWidgets!");
-}
-
 void RpsFrame::OnSettings(wxCommandEvent& event)
 {
 	wxLogMessage("Settings!");
 }
+
+void RpsFrame::OnRockPressed(wxCommandEvent& event)
+{
+	rpsButtonPanel->onRockSelection();
+}
+
+void RpsFrame::OnScissorPressed(wxCommandEvent& event)
+{
+	rpsButtonPanel->onScissorSelection();
+}
+
+void RpsFrame::OnPaperPressed(wxCommandEvent& event)
+{
+	rpsButtonPanel->onPaperSelection();
+}
+
