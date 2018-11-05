@@ -15,9 +15,10 @@ class InterfaceHandler {
 private:
     // rps logic applied
     Referee referee;
-    CPU * cpu;
+    Player * cpu;
 
     // dynamic UI elements
+    wxStaticText * playerSelectionText;
     wxStaticText * roundScoreText;
     wxStaticText * maeveSelectionText;
     wxStaticText * winnerNameText;
@@ -27,14 +28,17 @@ private:
 
     void incrementRoundScore();
     void updateRoundScore();
-    void updateMaeveScore();
+    void updatePlayerScore(std::string s);
+    void updateMaeveScore(std::string s);
     void updateWinnerNameText(std::string s);
     void playerWins();
     void maeveWins();
     void playersDraw();
 
 public:
-    InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6);
+    InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6, wxStaticText * t7);
 
     void humanMadeSelection(selection_t selection);
+    void newGame();
+    void setRounds(int rounds);
 };

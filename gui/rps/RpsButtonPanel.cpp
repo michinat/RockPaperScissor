@@ -14,13 +14,21 @@ void RpsButtonPanel::Init(wxPanel * mainPanel)
 {
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
+    wxSizer * gridSizer = new wxGridSizer(2, 0, 20);
     playerSelectText = new wxStaticText(this, wxID_ANY, "Player Selects:");
     wxFont font = playerSelectText->GetFont();
     font.SetPointSize(14);
     font.SetWeight(wxFONTWEIGHT_BOLD);
     playerSelectText->SetFont(font);
 
-    panelSizer->Add(playerSelectText, 0, 0, 0);
+    gridSizer->Add(playerSelectText);
+
+    playerSelectionText = new wxStaticText(this, wxID_ANY, "");
+    playerSelectionText->SetFont(font);
+
+    gridSizer->Add(playerSelectionText);
+
+    panelSizer->Add(gridSizer, 0, 0, 0);
 
     rockButton = new wxButton(this, BUTTON_Rock, "Rock");
     scissorButton = new wxButton(this, BUTTON_Scissor, "Scissor");
@@ -35,19 +43,4 @@ void RpsButtonPanel::Init(wxPanel * mainPanel)
 
     panelSizer->SetSizeHints(mainPanel);
     this->SetSizer(panelSizer);
-}
-
-void RpsButtonPanel::onRockSelection()
-{
-    interfaceHandler->humanMadeSelection(selection_t::ROCK);
-}
-
-void RpsButtonPanel::onScissorSelection()
-{
-    interfaceHandler->humanMadeSelection(selection_t::SCISSOR);
-}
-
-void RpsButtonPanel::onPaperSelection()
-{
-    interfaceHandler->humanMadeSelection(selection_t::PAPER);
 }

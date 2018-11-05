@@ -58,12 +58,13 @@ private:
     MaevePanel * maevePanel;
     RoundWinnerPanel * roundWinnerPanel;
     ScoreBoardPanel * scoreBoardPanel;
+    InterfaceHandler * interfaceHandler;
 
     // event handlers (these functions should _not_ be virtual)
-    void OnHello(wxCommandEvent& event);
+    void OnNewGame(wxCommandEvent& event);
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
-    void OnSettings(wxCommandEvent& event);
+    void OnSetRounds(wxCommandEvent& event);
 
     void OnRockPressed(wxCommandEvent& event);
     void OnPaperPressed(wxCommandEvent& event);

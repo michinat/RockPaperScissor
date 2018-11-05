@@ -13,11 +13,11 @@
 
 enum
 {
-    RPS_About = wxID_ABOUT,
-    RPS_Exit = wxID_EXIT,
+    MENU_About = wxID_ABOUT,
+    MENU_Exit = wxID_EXIT,
+    MENU_SetRound = 1,
+    MENU_NewGame,
 
-    ID_SETTING = 1,
-    ID_Hello,
     BUTTON_Rock,
     BUTTON_Paper,
     BUTTON_Scissor

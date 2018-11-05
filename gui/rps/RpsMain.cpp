@@ -34,25 +34,25 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 {
     // MENU BAR
     wxMenu * menuFile = new wxMenu;
-    menuFile->Append(ID_Hello, "&Hello...\tCtrl-H", 
-        "Help string shown in status bar for this menu item");
+    menuFile->Append(MENU_NewGame, "&Start a New Game\tCtrl-N", 
+        "Go back to round 1 and face Maeve!");
     menuFile->AppendSeparator();
-    menuFile->Append(RPS_Exit);
+    menuFile->Append(MENU_Exit);
 
     wxMenu * menuSetting = new wxMenu;
-    menuSetting->Append(ID_SETTING, "&Set Rounds",
+    menuSetting->Append(MENU_SetRound, "&Set Rounds",
         "Default rounds is 20");
 
     wxMenu * menuHelp = new wxMenu;
-    menuHelp->Append(RPS_About);
+    menuHelp->Append(MENU_About, "&About",
+        ":)");
 
     wxMenuBar * menuBar = new wxMenuBar;
     menuBar->Append(menuFile, "&File");
-    menuBar->Append(menuSetting, "&Setting");
+    menuBar->Append(menuSetting, "&Settings");
     menuBar->Append(menuHelp, "&Help");
     SetMenuBar(menuBar);
     CreateStatusBar();
-    SetStatusText("Welcome to wxWidgets!");
 
     // MAIN PANEL
     wxPanel * mainPanel = new wxPanel(this, wxID_ANY);
@@ -83,10 +83,10 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     scoreBoardPanel = new ScoreBoardPanel(mainPanel);
     mainSizer->Add(scoreBoardPanel, 0, wxALIGN_CENTER | wxTOP, 10);
 
-
-    rpsButtonPanel->setInterfaceHandler(
+    // interface facade updates dynamic UI elements of subpanels
+    interfaceHandler = new InterfaceHandler(
         roundPanel->getRoundScoreText(), maevePanel->getMaeveSelectionText(), roundWinnerPanel->getWinnerNameText(),
-        scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText());
+        scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText(), rpsButtonPanel->getPlayerSelectionText());
 
 }
 
@@ -98,10 +98,10 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 // handlers) which process them. It can be also done at run-time, but for the
 // simple menu events like this the static method is much simpler.
 BEGIN_EVENT_TABLE(RpsFrame, wxFrame)
-    EVT_MENU(ID_Hello, RpsFrame::OnHello)
-    EVT_MENU(RPS_Exit, RpsFrame::OnExit)
-    EVT_MENU(ID_SETTING, RpsFrame::OnSettings)
-    EVT_MENU(RPS_About, RpsFrame::OnAbout)
+    EVT_MENU(MENU_NewGame, RpsFrame::OnNewGame)
+    EVT_MENU(MENU_Exit, RpsFrame::OnExit)
+    EVT_MENU(MENU_SetRound, RpsFrame::OnSetRounds)
+    EVT_MENU(MENU_About, RpsFrame::OnAbout)
     EVT_BUTTON(BUTTON_Rock, RpsFrame::OnRockPressed)
     EVT_BUTTON(BUTTON_Paper, RpsFrame::OnPaperPressed)
     EVT_BUTTON(BUTTON_Scissor, RpsFrame::OnScissorPressed)
@@ -111,9 +111,9 @@ END_EVENT_TABLE()
 // main frame implementation
 // ----------------------------------------------------------------------------
 
-void RpsFrame::OnHello(wxCommandEvent& event)
+void RpsFrame::OnNewGame(wxCommandEvent& event)
 {
-    wxLogMessage("Hello world from wxWidgets!");
+    interfaceHandler->newGame();
 }
 
 void RpsFrame::OnExit(wxCommandEvent & event)
@@ -123,27 +123,28 @@ void RpsFrame::OnExit(wxCommandEvent & event)
 
 void RpsFrame::OnAbout(wxCommandEvent& event)
 {
-    wxMessageBox("This is a wxWidgets' Hello world sample",
-        "About Hello World", wxOK | wxICON_INFORMATION);
+    wxMessageBox("This application was built on Fall 2018 for our CMPE 135 class. Thank you for using our RPS application - CraZ CoderZ\n\nDanny Nuch\nLinda Nguyen\nPreyrna Yadav\nMichelle Nguyen",
+        "About", 0);
 }
 
-void RpsFrame::OnSettings(wxCommandEvent& event)
+void RpsFrame::OnSetRounds(wxCommandEvent& event)
 {
-    wxLogMessage("Settings!");
+    /// TODO determine input to set rounds
+    //interfaceHandler->setRounds();
 }
 
 void RpsFrame::OnRockPressed(wxCommandEvent& event)
 {
-    rpsButtonPanel->onRockSelection();
+    interfaceHandler->humanMadeSelection(selection_t::ROCK);
 }
 
 void RpsFrame::OnScissorPressed(wxCommandEvent& event)
 {
-    rpsButtonPanel->onScissorSelection();
+    interfaceHandler->humanMadeSelection(selection_t::SCISSOR);
 }
 
 void RpsFrame::OnPaperPressed(wxCommandEvent& event)
 {
-    rpsButtonPanel->onPaperSelection();
+    interfaceHandler->humanMadeSelection(selection_t::PAPER);
 }
 
