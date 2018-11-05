@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	Maeve Panel subclass
+    CraZ CoderZ RPS
+    Maeve Panel subclass
 */
 
 #pragma once
@@ -10,14 +10,14 @@
 
 class MaevePanel : public RpsPanel {
 public:
-	MaevePanel(wxPanel * mainPanel);
-	void Init(wxPanel * mainPanel) override;
+    MaevePanel(wxPanel * mainPanel);
+    void Init(wxPanel * mainPanel) override;
 
-	wxStaticText * getMaeveSelectionText() { return maeveSelectionText; }
+    wxStaticText * getMaeveSelectionText() { return maeveSelectionText; }
 
 private:
-	wxSizer * maeveGridSizer;
+    wxSizer * maeveGridSizer;
 
-	wxStaticText * maeveSelectText;
-	wxStaticText * maeveSelectionText;
+    wxStaticText * maeveSelectText;
+    wxStaticText * maeveSelectionText;
 };

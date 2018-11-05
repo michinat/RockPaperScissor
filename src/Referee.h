@@ -9,9 +9,9 @@
 #include "Player.h"
 
 typedef enum {
-	PLAYER1_WIN,
-	PLAYER2_WIN,
-	PLAYERS_DRAW
+    PLAYER1_WIN,
+    PLAYER2_WIN,
+    PLAYERS_DRAW
 } winner_t;
 
 class Referee {
@@ -20,17 +20,17 @@ private:
     int currentRound, MAX_GAME, player1Score, player2Score, drawScore;
 
 public:
-	Referee();
+    Referee();
     ~Referee() = default;
 
-	int getPlayer1Score() { return player1Score; }
-	int getPlayer2Score() { return player2Score; }
-	int getDrawScore() { return drawScore; }
+    int getPlayer1Score() { return player1Score; }
+    int getPlayer2Score() { return player2Score; }
+    int getDrawScore() { return drawScore; }
 
-	void incrementRound() { currentRound++; }
-	int getCurrentRound() { return currentRound; }
+    void incrementRound() { currentRound++; }
+    int getCurrentRound() { return currentRound; }
 
-	winner_t compareRPS(selection_t player1, selection_t player2);
+    winner_t compareRPS(selection_t player1, selection_t player2);
 
     void displayRoundWinner(Player * player1, Player * player2);
     void newRound(Player * player1, Player * player2);

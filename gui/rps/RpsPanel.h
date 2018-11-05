@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	Abstract Rps panel class
+    CraZ CoderZ RPS
+    Abstract Rps panel class
 */
 
 #pragma once
@@ -10,12 +10,12 @@
 
 class RpsPanel : public wxPanel {
 public:
-	RpsPanel(wxPanel * mainPanel) : wxPanel(mainPanel, wxID_ANY) {}
-	virtual ~RpsPanel() = default;
+    RpsPanel(wxPanel * mainPanel) : wxPanel(mainPanel, wxID_ANY) {}
+    virtual ~RpsPanel() = default;
 
-	// Init is pure virtual function
-	// to be redefined in subclasses
-	virtual void Init(wxPanel * mainPanel) = 0;
+    // Init is pure virtual function
+    // to be redefined in subclasses
+    virtual void Init(wxPanel * mainPanel) = 0;
 protected:
-	wxSizer * panelSizer;
+    wxSizer * panelSizer;
 };

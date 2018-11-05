@@ -1,7 +1,7 @@
 /**
- * CraZ CoderZ RPS
- * Player base class implementation
- */
+* CraZ CoderZ RPS
+* Player base class implementation
+*/
 
 #include "Player.h"
 

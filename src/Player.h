@@ -17,12 +17,11 @@ private:
 protected:
     Selection * selection;
     void setName(std::string in);
-
+    void setRPS(selection_t type);
 public:
     Player() = default;
     virtual ~Player() = default;
 
-	void setRPS(selection_t type);
     selection_t getRPS();
     std::string getName();
     void makeRPSChoice();

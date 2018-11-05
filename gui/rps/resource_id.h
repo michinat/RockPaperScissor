@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	Global UI ID constants
+    CraZ CoderZ RPS
+    Global UI ID constants
 */
 
 #pragma once
@@ -13,12 +13,12 @@
 
 enum
 {
-	RPS_About = wxID_ABOUT,
-	RPS_Exit = wxID_EXIT,
+    RPS_About = wxID_ABOUT,
+    RPS_Exit = wxID_EXIT,
 
-	ID_SETTING = 1,
-	ID_Hello,
-	BUTTON_Rock,
-	BUTTON_Paper,
-	BUTTON_Scissor
+    ID_SETTING = 1,
+    ID_Hello,
+    BUTTON_Rock,
+    BUTTON_Paper,
+    BUTTON_Scissor
 };

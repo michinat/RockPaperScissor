@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	Round Panel subclass
+    CraZ CoderZ RPS
+    Round Panel subclass
 */
 
 #pragma once
@@ -10,14 +10,14 @@
 
 class RoundPanel : public RpsPanel {
 public:
-	RoundPanel(wxPanel * mainPanel);
+    RoundPanel(wxPanel * mainPanel);
 
-	void Init(wxPanel * mainPanel) override;
+    void Init(wxPanel * mainPanel) override;
 
-	wxStaticText * getRoundScoreText() { return roundScoreText; };
+    wxStaticText * getRoundScoreText() { return roundScoreText; };
 private:
-	wxSizer * headerGridSizer;
+    wxSizer * headerGridSizer;
 
-	wxStaticText * roundText;
-	wxStaticText * roundScoreText;
+    wxStaticText * roundText;
+    wxStaticText * roundScoreText;
 };

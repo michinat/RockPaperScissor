@@ -1,6 +1,6 @@
 /**
     CraZ CoderZ RPS
-	Simple Machine Learning Selection subclass
+    Simple Machine Learning Selection subclass
 */
 
 #ifndef ROCKPAPERSCISSOR_SMARTSELECTION_H

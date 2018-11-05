@@ -22,20 +22,20 @@ typedef enum {
 
 // helper selection_t to string
 static inline std::string rpsToString(selection_t rps) {
-	std::string s;
-	if (rps == selection_t::ROCK) {
-		s = "Rock";
-	}
-	else if (rps == selection_t::PAPER) {
-		s = "Paper";
-	}
-	else if (rps == selection_t::SCISSOR) {
-		s = "Scissor";
-	}
-	else if (rps == selection_t::INVALID) {
-		s = "INVALID_INPUT";
-	}
-	return s;
+    std::string s;
+    if (rps == selection_t::ROCK) {
+        s = "Rock";
+    }
+    else if (rps == selection_t::PAPER) {
+        s = "Paper";
+    }
+    else if (rps == selection_t::SCISSOR) {
+        s = "Scissor";
+    }
+    else if (rps == selection_t::INVALID) {
+        s = "INVALID_INPUT";
+    }
+    return s;
 }
 
 // helper selection_t overloaded operator<<
@@ -80,7 +80,7 @@ static void pushRPSLog() {
     std::vector<std::string> rpsLog;
 
     if (in.fail() || rps.size() < 5) {
-		std::cout << "File failed to open\n";
+        std::cout << "File failed to open\n";
         return;
     }
 

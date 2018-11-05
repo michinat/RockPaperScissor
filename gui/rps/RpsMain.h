@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	RPS main file; initiates wxWidgets and contains main frame/sizer
+    CraZ CoderZ RPS
+    RPS main file; initiates wxWidgets and contains main frame/sizer
 */
 
 #pragma once
@@ -21,13 +21,13 @@
 #include "InterfaceHandler.h"
 
 #ifdef __BORLANDC__
-	#pragma hdrstop
+    #pragma hdrstop
 #endif
 
 // for all others, include the necessary headers (this file is usually all you
 // need because it includes almost all "standard" wxWidgets headers)
 #ifndef WX_PRECOMP
-	#include "wx/wx.h"
+    #include "wx/wx.h"
 #endif
 
 // ----------------------------------------------------------------------------
@@ -42,32 +42,32 @@
 class RpsApp : public wxApp
 {
 public:
-	// override OnInit() function
-	virtual bool OnInit();
+    // override OnInit() function
+    virtual bool OnInit();
 };
 
 // Define a new frame type: this is going to be our main frame
 class RpsFrame : public wxFrame
 {
 public:
-	RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
+    RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size);
 
 private:
-	RoundPanel * roundPanel;
-	RpsButtonPanel * rpsButtonPanel;
-	MaevePanel * maevePanel;
-	RoundWinnerPanel * roundWinnerPanel;
-	ScoreBoardPanel * scoreBoardPanel;
+    RoundPanel * roundPanel;
+    RpsButtonPanel * rpsButtonPanel;
+    MaevePanel * maevePanel;
+    RoundWinnerPanel * roundWinnerPanel;
+    ScoreBoardPanel * scoreBoardPanel;
 
-	// event handlers (these functions should _not_ be virtual)
-	void OnHello(wxCommandEvent& event);
-	void OnExit(wxCommandEvent& event);
-	void OnAbout(wxCommandEvent& event);
-	void OnSettings(wxCommandEvent& event);
+    // event handlers (these functions should _not_ be virtual)
+    void OnHello(wxCommandEvent& event);
+    void OnExit(wxCommandEvent& event);
+    void OnAbout(wxCommandEvent& event);
+    void OnSettings(wxCommandEvent& event);
 
-	void OnRockPressed(wxCommandEvent& event);
-	void OnPaperPressed(wxCommandEvent& event);
-	void OnScissorPressed(wxCommandEvent& event);
-	// any class wishing to process wxWidgets events must use this macro
-	DECLARE_EVENT_TABLE();
+    void OnRockPressed(wxCommandEvent& event);
+    void OnPaperPressed(wxCommandEvent& event);
+    void OnScissorPressed(wxCommandEvent& event);
+    // any class wishing to process wxWidgets events must use this macro
+    DECLARE_EVENT_TABLE();
 };

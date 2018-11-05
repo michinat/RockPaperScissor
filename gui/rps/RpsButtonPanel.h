@@ -1,6 +1,6 @@
 /**
-	CraZ CoderZ RPS
-	Rps Button Panel subclass
+    CraZ CoderZ RPS
+    Rps Button Panel subclass
 */
 
 #pragma once
@@ -14,23 +14,23 @@
 
 class RpsButtonPanel : public RpsPanel {
 public:
-	RpsButtonPanel(wxPanel * mainPanel);
+    RpsButtonPanel(wxPanel * mainPanel);
 
-	void Init(wxPanel * mainPanel) override;
+    void Init(wxPanel * mainPanel) override;
 
     void onRockSelection();
-	void onScissorSelection();
-	void onPaperSelection();
+    void onScissorSelection();
+    void onPaperSelection();
 
-	void setInterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3,
-		wxStaticText * t4, wxStaticText * t5, wxStaticText * t6) { interfaceHandler = new InterfaceHandler(t, t2, t3, t4, t5, t6); }
+    void setInterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3,
+        wxStaticText * t4, wxStaticText * t5, wxStaticText * t6) { interfaceHandler = new InterfaceHandler(t, t2, t3, t4, t5, t6); }
 
 private:
-	wxSizer * rpsButtonSizer;
-	wxStaticText * playerSelectText;
+    wxSizer * rpsButtonSizer;
+    wxStaticText * playerSelectText;
 
-	wxButton * rockButton;
-	wxButton * scissorButton;
-	wxButton * paperButton;
-	InterfaceHandler * interfaceHandler;
+    wxButton * rockButton;
+    wxButton * scissorButton;
+    wxButton * paperButton;
+    InterfaceHandler * interfaceHandler;
 };
