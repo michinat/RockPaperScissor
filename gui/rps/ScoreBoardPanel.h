@@ -7,6 +7,7 @@
 
 #include "RpsPanel.h"
 #include <wx/stattext.h>
+#include <wx/textctrl.h>
 
 class ScoreBoardPanel : public RpsPanel {
 public:

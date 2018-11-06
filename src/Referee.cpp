@@ -5,12 +5,12 @@
 
 #include "Referee.h"
 
-Referee::Referee() {
+Referee::Referee(int maxGame) {
     player1Score = 0;
     player2Score = 0;
     drawScore = 0;
     currentRound = 1;
-    MAX_GAME = 21;
+    MAX_GAME = maxGame;
     player1Selection = selection_t::INVALID;
     player2Selection = selection_t::INVALID;
 }
@@ -106,7 +106,7 @@ void Referee::newRound(Player * player1, Player * player2) {
 }
 
 bool Referee::endGame() {
-    return currentRound == MAX_GAME;
+    return currentRound >= (MAX_GAME+1);
 }
 
 void Referee::notifySelection(Player * player) {

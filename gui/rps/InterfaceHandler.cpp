@@ -12,14 +12,17 @@ InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStatic
     updateRoundScore();
 }
 
+    InterfaceHandler::~InterfaceHandler()
+    {
+        delete cpu;
+    }
+
 void InterfaceHandler::humanMadeSelection(selection_t selection) {
     updatePlayerScore(rpsToString(selection));
     referee.notifySelection(cpu);
     updateMaeveSelectScore(rpsToString(cpu->getRPS()));
 
     winner_t winner = referee.compareRPS(selection, cpu->getRPS());
-
-    // draw, or invalid entries
 
     switch (winner) {
         case PLAYERS_DRAW:
@@ -34,7 +37,7 @@ void InterfaceHandler::humanMadeSelection(selection_t selection) {
             // increment round
             incrementRoundScore();
             // update gui round score
-            updateRoundScore();
+            if (!referee.endGame()) updateRoundScore();
             break;
         case PLAYER2_WIN:
             // cpu won
@@ -44,7 +47,7 @@ void InterfaceHandler::humanMadeSelection(selection_t selection) {
             // increment round
             incrementRoundScore();
             // update gui round score
-            updateRoundScore();
+            if (!referee.endGame()) updateRoundScore();
             break;
         default:
             break;
@@ -61,6 +64,10 @@ void InterfaceHandler::humanMadeSelection(selection_t selection) {
         pushRPSLog();
     }
     rps.push_back(convertRPStoChar(cpu->getRPS()));
+
+    if (referee.endGame()) {
+        displayWinner();
+    }
 }
 
 void InterfaceHandler::incrementRoundScore() {
@@ -101,10 +108,13 @@ void InterfaceHandler::playersDraw() {
     drawScoreText->SetLabel(std::to_string(referee.getDrawScore()));
 }
 
-void InterfaceHandler::newGame()
+void InterfaceHandler::newGame(bool resetRounds)
 {
-    referee = Referee();
+    if (resetRounds) referee = Referee(); 
+    else referee = Referee(referee.getMaxRounds());
 
+    // clear rps vector tracking
+    if (rps.size() > 0) rps.clear();
     updatePlayerScore("");
     updateMaevePredictedScore("Nothing");
     updateMaeveSelectScore("Nothing");
@@ -115,7 +125,38 @@ void InterfaceHandler::newGame()
     playersDraw();
 }
 
-void InterfaceHandler::setRounds(int rounds)
+void InterfaceHandler::setMaxRounds(int rounds)
 {
     referee.setMaxRound(rounds);
+}
+
+long InterfaceHandler::getMaxRounds()
+{
+    return referee.getMaxRounds();
+}
+
+void InterfaceHandler::displayWinner()
+{
+    std::string s;
+    if (referee.getPlayer1Score() == referee.getPlayer2Score()) {
+        s = "No one has won, you got a draw with Maeve with " + std::to_string(referee.getPlayer1Score()) + " points each!";
+    }
+    else {
+        std::string winnerName = "";
+        std::string score = "";
+        if (referee.getPlayer1Score() > referee.getPlayer2Score()) {
+            winnerName = "You have";
+            score = std::to_string(referee.getPlayer1Score());
+        }
+        else {
+            winnerName = "Maeve has";
+            score = std::to_string(referee.getPlayer2Score());
+        }
+        s = winnerName + " won with " + score + " points! Play again if you'd like!";
+    }
+
+    newGame(false);
+
+    wxString winnerText(s);
+    wxMessageBox(winnerText);
 }

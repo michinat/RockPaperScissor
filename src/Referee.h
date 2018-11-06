@@ -20,7 +20,7 @@ private:
     int currentRound, MAX_GAME, player1Score, player2Score, drawScore;
 
 public:
-    Referee();
+    Referee(int maxGame = 20);
     ~Referee() = default;
 
     void setMaxRound(int rounds) { MAX_GAME = rounds; }

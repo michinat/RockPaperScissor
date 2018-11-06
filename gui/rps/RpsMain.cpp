@@ -38,10 +38,10 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
         "Go back to round 1 and face Maeve!");
     menuFile->AppendSeparator();
     menuFile->Append(MENU_Exit);
-
+    
     wxMenu * menuSetting = new wxMenu;
-    menuSetting->Append(MENU_SetRound, "&Set Rounds",
-        "Default rounds is 20");
+    menuSetting->Append(MENU_SetRound, "&Set Max Rounds",
+        "Default max rounds is 20");
 
     wxMenu * menuHelp = new wxMenu;
     menuHelp->Append(MENU_About, "&About",
@@ -87,7 +87,6 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
     interfaceHandler = new InterfaceHandler(
         roundPanel->getRoundScoreText(), rpsButtonPanel->getPlayerSelectionText(), maevePanel->getMaevePredictedScoreText(), maevePanel->getMaeveSelectScoreText(), 
         roundWinnerPanel->getWinnerNameText(), scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText());
-
 }
 
 // ----------------------------------------------------------------------------
@@ -118,6 +117,7 @@ void RpsFrame::OnNewGame(wxCommandEvent& event)
 
 void RpsFrame::OnExit(wxCommandEvent & event)
 {
+    delete interfaceHandler;
     Close(true);
 }
 
@@ -129,8 +129,21 @@ void RpsFrame::OnAbout(wxCommandEvent& event)
 
 void RpsFrame::OnSetRounds(wxCommandEvent& event)
 {
-    /// TODO determine input to set rounds
-    //interfaceHandler->setRounds();
+    static long rounds_input = interfaceHandler->getMaxRounds();
+
+    wxString rounds;
+    rounds.Printf(wxT("%ld"), rounds_input);
+
+    rounds = wxGetTextFromUser(wxT("How many rounds do you want per game?"),
+        wxT("Set max rounds per game"),
+        rounds,
+        this);
+
+    if (!rounds)
+        return; // cancelled button pressed
+
+    wxSscanf(rounds, wxT("%ld"), &rounds_input);
+    interfaceHandler->setMaxRounds(rounds_input);
 }
 
 void RpsFrame::OnRockPressed(wxCommandEvent& event)
@@ -147,4 +160,3 @@ void RpsFrame::OnPaperPressed(wxCommandEvent& event)
 {
     interfaceHandler->humanMadeSelection(selection_t::PAPER);
 }
-
