@@ -5,6 +5,14 @@
 
 #include "Player.h"
 
+Player::~Player()
+{
+    if (selection != nullptr) {
+        delete selection;
+        selection = nullptr;
+    }
+}
+
 selection_t Player::getRPS() {
     return RPS;
 }

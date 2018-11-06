@@ -117,7 +117,7 @@ void RpsFrame::OnNewGame(wxCommandEvent& event)
 
 void RpsFrame::OnExit(wxCommandEvent & event)
 {
-    delete interfaceHandler;
+    wxDELETE(interfaceHandler);
     Close(true);
 }
 

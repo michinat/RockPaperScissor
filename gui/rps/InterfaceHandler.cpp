@@ -14,7 +14,7 @@ InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStatic
 
 InterfaceHandler::~InterfaceHandler()
 {
-    delete cpu;
+     wxDELETE(cpu);
 }
 
 void InterfaceHandler::humanMadeSelection(selection_t selection) {
@@ -140,8 +140,7 @@ void InterfaceHandler::displayWinner()
     std::string s;
     if (referee.getPlayer1Score() == referee.getPlayer2Score()) {
         s = "No one has won, you got a draw with Maeve with " + std::to_string(referee.getPlayer1Score()) + " points each!";
-    }
-    else {
+    } else {
         std::string winnerName = "";
         std::string score = "";
         if (referee.getPlayer1Score() > referee.getPlayer2Score()) {

@@ -20,7 +20,7 @@ protected:
     void setRPS(selection_t type);
 public:
     Player() = default;
-    virtual ~Player() = default;
+    virtual ~Player();
 
     selection_t getRPS();
     std::string getName();
