@@ -20,7 +20,8 @@ private:
     // dynamic UI elements
     wxStaticText * playerSelectionText;
     wxStaticText * roundScoreText;
-    wxStaticText * maeveSelectionText;
+    wxStaticText * maevePredictedScoreText;
+    wxStaticText * maeveSelectScoreText;
     wxStaticText * winnerNameText;
     wxStaticText * playerScoreText;
     wxStaticText * maeveScoreText;
@@ -29,15 +30,17 @@ private:
     void incrementRoundScore();
     void updateRoundScore();
     void updatePlayerScore(std::string s);
-    void updateMaeveScore(std::string s);
+    void updateMaevePredictedScore(std::string s);
+    void updateMaeveSelectScore(std::string s);
     void updateWinnerNameText(std::string s);
     void playerWins();
     void maeveWins();
     void playersDraw();
 
 public:
-    InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6, wxStaticText * t7);
+    InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6, wxStaticText * t7, wxStaticText * t8);
 
+    // invoked in respective UI callback functions
     void humanMadeSelection(selection_t selection);
     void newGame();
     void setRounds(int rounds);

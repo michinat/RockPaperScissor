@@ -5,8 +5,8 @@
 
 #include "InterfaceHandler.h"
 
-InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6, wxStaticText * t7) :
-    roundScoreText(t), maeveSelectionText(t2), winnerNameText(t3), playerScoreText(t4), maeveScoreText(t5), drawScoreText(t6), playerSelectionText(t7) {
+InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStaticText * t3, wxStaticText * t4, wxStaticText * t5, wxStaticText * t6, wxStaticText * t7, wxStaticText * t8) :
+    roundScoreText(t), playerSelectionText(t2), maevePredictedScoreText(t3), maeveSelectScoreText(t4), winnerNameText(t5), playerScoreText(t6), maeveScoreText(t7), drawScoreText(t8) {
     cpu = new CPU(CPU::SIMPLEML);
     // set default round 1
     updateRoundScore();
@@ -15,7 +15,7 @@ InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStatic
 void InterfaceHandler::humanMadeSelection(selection_t selection) {
     updatePlayerScore(rpsToString(selection));
     referee.notifySelection(cpu);
-    updateMaeveScore(rpsToString(cpu->getRPS()));
+    updateMaeveSelectScore(rpsToString(cpu->getRPS()));
 
     winner_t winner = referee.compareRPS(selection, cpu->getRPS());
 
@@ -54,8 +54,12 @@ void InterfaceHandler::humanMadeSelection(selection_t selection) {
     rps.push_back(convertRPStoChar(selection));
 
     // keep storing last 5 entries to rps frequency log
-    if (rps.size() >= 5) 
+    if (rps.size() >= 5) {
+        // show predicted score
+        updateMaevePredictedScore(rpsToString(getPredictedChoice()));
+        // keep storing last 5 entries to rps frequency log
         pushRPSLog();
+    }
     rps.push_back(convertRPStoChar(cpu->getRPS()));
 }
 
@@ -72,8 +76,13 @@ void InterfaceHandler::updatePlayerScore(std::string s)
     playerSelectionText->SetLabel(s);
 }
 
-void InterfaceHandler::updateMaeveScore(std::string s) {
-    maeveSelectionText->SetLabel(s);
+void InterfaceHandler::updateMaevePredictedScore(std::string s)
+{
+    maevePredictedScoreText->SetLabel(s);
+}
+
+void InterfaceHandler::updateMaeveSelectScore(std::string s) {
+    maeveSelectScoreText->SetLabel(s);
 }
 
 void InterfaceHandler::updateWinnerNameText(std::string s) {
@@ -97,7 +106,8 @@ void InterfaceHandler::newGame()
     referee = Referee();
 
     updatePlayerScore("");
-    updateMaeveScore("Nothing");
+    updateMaevePredictedScore("Nothing");
+    updateMaeveSelectScore("Nothing");
     updateWinnerNameText("Nobody");
     updateRoundScore();
     playerWins();

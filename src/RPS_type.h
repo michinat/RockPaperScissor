@@ -114,4 +114,7 @@ static void pushRPSLog() {
     out.close();
 }
 
+extern selection_t predictedChoice;
+static inline selection_t getPredictedChoice() { return predictedChoice; }
+
 #endif //RPS1_RPS_TYPE_H

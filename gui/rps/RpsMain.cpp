@@ -85,8 +85,8 @@ RpsFrame::RpsFrame(const wxString& title, const wxPoint& pos, const wxSize& size
 
     // interface facade updates dynamic UI elements of subpanels
     interfaceHandler = new InterfaceHandler(
-        roundPanel->getRoundScoreText(), maevePanel->getMaeveSelectionText(), roundWinnerPanel->getWinnerNameText(),
-        scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText(), rpsButtonPanel->getPlayerSelectionText());
+        roundPanel->getRoundScoreText(), rpsButtonPanel->getPlayerSelectionText(), maevePanel->getMaevePredictedScoreText(), maevePanel->getMaeveSelectScoreText(), 
+        roundWinnerPanel->getWinnerNameText(), scoreBoardPanel->getPlayerScoreText(), scoreBoardPanel->getMaeveScoreText(), scoreBoardPanel->getDrawScoreText());
 
 }
 

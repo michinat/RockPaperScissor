@@ -14,18 +14,26 @@ void MaevePanel::Init(wxPanel * mainPanel)
 {
     panelSizer = new wxBoxSizer(wxVERTICAL);
 
-    maeveGridSizer = new wxGridSizer(1, 0, 10);
-
-    maeveSelectText = new wxStaticText(this, wxID_ANY, "Maeve Selects:");
-    wxFont font = maeveSelectText->GetFont();
+    maeveTitleText = new wxStaticText(this, wxID_ANY, "Maeve:");
+    wxFont font = maeveTitleText->GetFont();
     font.SetPointSize(14);
     font.SetWeight(wxFONTWEIGHT_BOLD);
-    maeveSelectText->SetFont(font);
-    maeveGridSizer->Add(maeveSelectText, 0, 0, 0);
+    maeveTitleText->SetFont(font);
+    panelSizer->Add(maeveTitleText, 0, 0, 0);
 
-    maeveSelectionText = new wxStaticText(this, wxID_ANY, "Nothing");
-    maeveSelectionText->SetFont(font);
-    maeveGridSizer->Add(maeveSelectionText, 0, wxLEFT, 42);
+    maeveGridSizer = new wxGridSizer(2, 0, 10);
+
+    maevePredictedText = new wxStaticText(this, wxID_ANY, "Predicted:");
+    maeveGridSizer->Add(maevePredictedText);
+
+    maevePredictedScoreText = new wxStaticText(this, wxID_ANY, "Nothing");
+    maeveGridSizer->Add(maevePredictedScoreText);
+
+    maeveSelectText = new wxStaticText(this, wxID_ANY, "Selected:");
+    maeveGridSizer->Add(maeveSelectText);
+
+    maeveSelectScoreText = new wxStaticText(this, wxID_ANY, "Nothing");
+    maeveGridSizer->Add(maeveSelectScoreText);
 
     panelSizer->Add(maeveGridSizer, 0, 0, 0);
     panelSizer->SetSizeHints(mainPanel);

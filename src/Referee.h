@@ -23,7 +23,7 @@ public:
     Referee();
     ~Referee() = default;
 
-    void setMaxRound(int rounds) { MAX_GAME = rounds };
+    void setMaxRound(int rounds) { MAX_GAME = rounds; }
 
     int getPlayer1Score() { return player1Score; }
     int getPlayer2Score() { return player2Score; }

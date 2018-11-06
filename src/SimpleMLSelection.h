@@ -66,10 +66,13 @@ public:
                     selection = rs.makeSelection();
                 } else {
                     if (prediction == 'R') {
+                        predictedChoice = ROCK;
                         selection = PAPER;
                     } else if (prediction == 'P') {
+                        predictedChoice = PAPER;
                         selection = SCISSOR;
                     } else if (prediction == 'S') {
+                        predictedChoice = SCISSOR;
                         selection = ROCK;
                     } else if (prediction == 'I') {
 //                        selection = INVALID;

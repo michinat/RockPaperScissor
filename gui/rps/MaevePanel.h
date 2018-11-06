@@ -13,11 +13,15 @@ public:
     MaevePanel(wxPanel * mainPanel);
     void Init(wxPanel * mainPanel) override;
 
-    wxStaticText * getMaeveSelectionText() { return maeveSelectionText; }
+    wxStaticText * getMaevePredictedScoreText() { return maevePredictedScoreText; }
+    wxStaticText * getMaeveSelectScoreText() { return maeveSelectScoreText; }
 
 private:
     wxSizer * maeveGridSizer;
 
+    wxStaticText * maeveTitleText;
+    wxStaticText * maevePredictedText;
+    wxStaticText * maevePredictedScoreText;
     wxStaticText * maeveSelectText;
-    wxStaticText * maeveSelectionText;
+    wxStaticText * maeveSelectScoreText;
 };

@@ -40,7 +40,7 @@ void ScoreBoardPanel::Init(wxPanel * mainPanel)
     drawScoreText = new wxStaticText(this, wxID_ANY, "0");
     scoreSizer->Add(drawScoreText);
 
-    panelSizer->Add(scoreSizer, 0, wxLEFT, 35);
+    panelSizer->Add(scoreSizer, 0, 0, 0);
 
     panelSizer->SetSizeHints(mainPanel);
     this->SetSizer(panelSizer);

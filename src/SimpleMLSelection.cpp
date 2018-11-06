@@ -7,3 +7,4 @@
 
 // definition of global variable must be explicitly in cpp file
 std::vector<char> rps;
+selection_t predictedChoice;
