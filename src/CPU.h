@@ -13,7 +13,6 @@
 
 class CPU : public Player {
 public:
-
     // enum defines modes of selection
     typedef enum {
         RANDOM = 0,

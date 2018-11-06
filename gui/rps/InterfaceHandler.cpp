@@ -12,10 +12,10 @@ InterfaceHandler::InterfaceHandler(wxStaticText * t, wxStaticText * t2, wxStatic
     updateRoundScore();
 }
 
-    InterfaceHandler::~InterfaceHandler()
-    {
-        delete cpu;
-    }
+InterfaceHandler::~InterfaceHandler()
+{
+    delete cpu;
+}
 
 void InterfaceHandler::humanMadeSelection(selection_t selection) {
     updatePlayerScore(rpsToString(selection));

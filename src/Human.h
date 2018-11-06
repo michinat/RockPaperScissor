@@ -11,7 +11,6 @@
 
 class Human : public Player {
 public:
-
     // enum defines modes of selection
     typedef enum {
         COMMAND_LINE
