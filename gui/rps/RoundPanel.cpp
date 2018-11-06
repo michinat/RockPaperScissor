@@ -17,7 +17,7 @@ void RoundPanel::Init(wxPanel * mainPanel)
 
     roundText = new wxStaticText(this, wxID_ANY, "Round Number:");
     wxFont font = roundText->GetFont();
-    font.SetPointSize(16);
+    font.SetPointSize(14);
     font.SetWeight(wxFONTWEIGHT_BOLD);
     roundText->SetFont(font);
 
@@ -25,8 +25,7 @@ void RoundPanel::Init(wxPanel * mainPanel)
     roundScoreText = new wxStaticText(this, wxID_ANY, "0");
     roundScoreText->SetFont(font);
     headerGridSizer->Add(roundScoreText, 0, 0, 0);
-
-    panelSizer->Add(headerGridSizer, 0, wxLEFT, 200);
+    panelSizer->Add(headerGridSizer, 0, 0, 0);
     panelSizer->SetSizeHints(mainPanel);
     this->SetSizer(panelSizer);
 }

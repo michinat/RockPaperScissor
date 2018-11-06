@@ -17,7 +17,7 @@ void RpsButtonPanel::Init(wxPanel * mainPanel)
     wxSizer * gridSizer = new wxGridSizer(2, 0, 20);
     playerSelectText = new wxStaticText(this, wxID_ANY, "Player Selects:");
     wxFont font = playerSelectText->GetFont();
-    font.SetPointSize(14);
+    font.SetPointSize(13);
     font.SetWeight(wxFONTWEIGHT_BOLD);
     playerSelectText->SetFont(font);
 
