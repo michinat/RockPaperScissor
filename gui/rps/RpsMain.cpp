@@ -101,6 +101,7 @@ BEGIN_EVENT_TABLE(RpsFrame, wxFrame)
     EVT_MENU(MENU_Exit, RpsFrame::OnExit)
     EVT_MENU(MENU_SetRound, RpsFrame::OnSetRounds)
     EVT_MENU(MENU_About, RpsFrame::OnAbout)
+    EVT_CLOSE(RpsFrame::OnClose)
     EVT_BUTTON(BUTTON_Rock, RpsFrame::OnRockPressed)
     EVT_BUTTON(BUTTON_Paper, RpsFrame::OnPaperPressed)
     EVT_BUTTON(BUTTON_Scissor, RpsFrame::OnScissorPressed)
@@ -159,4 +160,10 @@ void RpsFrame::OnScissorPressed(wxCommandEvent& event)
 void RpsFrame::OnPaperPressed(wxCommandEvent& event)
 {
     interfaceHandler->humanMadeSelection(selection_t::PAPER);
+}
+
+void RpsFrame::OnClose(wxCloseEvent & event)
+{
+    wxDELETE(interfaceHandler);
+    event.Skip();
 }

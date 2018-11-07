@@ -65,6 +65,7 @@ private:
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
     void OnSetRounds(wxCommandEvent& event);
+    void OnClose(wxCloseEvent& event);
 
     void OnRockPressed(wxCommandEvent& event);
     void OnPaperPressed(wxCommandEvent& event);
